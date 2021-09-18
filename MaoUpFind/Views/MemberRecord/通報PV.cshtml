@@ -1,0 +1,96 @@
+﻿@model IEnumerable<MaoUpFind.Models.通報資料>
+
+@*@{
+        ViewBag.Title = "Test";
+    }*@
+
+<!--通報紀錄-->
+<div id="tab01" class="tab-inner row justify-content-center">
+    <div class="row mb-3 mt-3">
+        @Html.ActionLink("✚建立通報","Index", "Bulletin01",new{},new{@class="btn mb-3", style="color: white;background-color: #28A745;width: 96px;height: 35px; font-size: 14px;"})
+
+        @*<button class="btn mb-3"
+                style="color: white;background-color: #28A745;width: 96px;height: 35px; font-size: 14px;">
+            ✚建立通報
+        </button>*@
+        <table class="rwd-table" id="table-5">
+
+            <thead>
+                <tr>
+                    <th>通報單號</th>
+                    <th>通報標題</th>
+                    <th>通報時間</th>
+                    <th>通報地點</th>
+                    <th><nobr>結案</nobr></th>
+                    <th><nobr>查詢專欄</nobr></th>
+                    <th><nobr>刪除</nobr></th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @foreach (var item in Model)
+                    {
+                        string 刪除A = "deleteA_" + item.通報單號;
+
+                        <tr>
+                            <td data-th="通報單號"> @Html.DisplayFor(modelItem => item.通報單號)</td>
+                            <td data-th="通報標題"> @Html.DisplayFor(modelItem => item.通報標題)</td>
+                            <td data-th="通報時間"> @Html.DisplayFor(modelItem => item.通報時間)</td>
+                            <td data-th="通報地點"> @Html.DisplayFor(modelItem => item.發生地點_全)</td>
+                            <td data-th="結案">
+                                @{
+                                            if(item.是否結案=="0")
+                                            {
+                                    <button class="btn btn_close Ajax_A" id="@item.通報單號" ><nobr>☑結案</nobr></button>
+                                            }
+                                            else
+                                            {
+                                    <button class="btn btn_close" disabled><nobr>已結案</nobr></button>
+                                            }
+                                }
+                            </td>
+                            <td data-th="查詢專欄">
+                                <nobr>@Html.ActionLink("⍈查詢專欄","detailView", "Bulletin03", new{ number = @item.通報單號 },new{ @class="btn btn_search"})</nobr>
+                            </td>
+
+                            <td data-th="刪除">
+                                @*<button class="btn btn_delete"><nobr>x刪除</nobr></button>*@
+                                @*<nobr>@Html.ActionLink("x刪除","通報PV_Delete","MemberRecord",new{ number = @item.通報單號 },new{ @class="btn btn_delete", onclick="return confirm('確定要刪除嗎？');"})</nobr>*@
+                                <nobr>
+                                    <button type="button" class="btn btn_delete" data-bs-toggle="modal" data-bs-target="#@刪除A">
+                                        x刪除
+                                    </button>
+                                </nobr>
+                            </td>
+                        </tr>
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="@刪除A" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">刪除確認</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body text-center">
+                                        你要刪除 @item.通報標題 嗎?
+                                    </div>
+                                    <div class="modal-footer">
+                                        <a type="button" class="btn btn-danger" href=@Url.Action("通報PV_Delete","MemberRecord",new{ number = @item.通報單號 })>確定刪除</a>
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
+
+                                        @*@Html.ActionLink("x刪除","通報PV_Delete","MemberRecord",new{ number = @item.通報單號 },new{ @class="btn btn_delete"})*@
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+            </tbody>
+        </table>
+
+
+
+    </div>
+</div>
+
+

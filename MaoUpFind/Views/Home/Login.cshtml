@@ -1,0 +1,84 @@
+﻿@model MaoUpFind.ViewModels.VM_Home_Login
+
+@* 前端自動欄位驗證 *@
+<script src="~/Scripts/Jquery/jquery.validate.js"></script>
+<script src="~/Scripts/Jquery/jquery.validate.unobtrusive.js"></script>
+
+@{
+    ViewBag.Title = "登入";
+}
+
+@if (@ViewBag.MessageBox != null)
+{
+    <script type="text/javascript">
+        var message = @Html.Raw(Json.Encode(@ViewBag.MessageBox));
+        alert(message);
+    </script>
+}
+<link href="~/Content/Login.css" rel="stylesheet" />
+
+<div>
+    <nav aria-label="breadcrumb" style="padding-left: 15px;">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="~/Home">首頁</a></li>
+            <li class="breadcrumb-item active" aria-current="page">登入</li>
+        </ol>
+    </nav>
+</div>
+
+<!--要做的頁面的內容 -->
+<div class="container mt-5 col-md-4">
+    <div class="row justify-content-center">
+        <div class="mt-2 mb-2" style="background-color: white;">
+            @using (Html.BeginForm("Login", "Home", FormMethod.Post, new { @class = "row justify-content-center", style = "background: white;" }))
+            {
+                <h5 class="text-center" style="color:#515151; margin:2rem;">會員登入</h5>
+
+                <div class="form-group col-md-10">
+                    <div class="input-group">
+                        <span class="input-group-addon">
+                            <img src="~/Images/member/member01.svg" alt=""
+                                 style="width:20px; height:16px; display:inline-flex">
+                        </span>
+                        @Html.EditorFor(model => model.會員帳號, new { htmlAttributes = new { @class = "form-control form-reg", placeholder = "帳號", required = true } })
+                        @*<input type="text" id="" class="form-control form-reg" placeholder="帳號">*@
+                    </div>
+                    @Html.ValidationMessageFor(model => model.會員帳號, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="form-group col-md-10">
+                    <div class="input-group">
+                        <span class="input-group-addon">
+                            <img src="~/Images/member/member02.svg" alt=""
+                                 style="width:20px; height:16px; display:inline-flex">
+                        </span>
+                        @Html.EditorFor(model => model.會員密碼, new { htmlAttributes = new { Type = "password", @class = "form-control form-reg", placeholder = "密碼", required = true } })
+                        @*<input type="text" id="" class="form-control form-reg" placeholder="密碼">*@
+                    </div>
+                    @Html.ValidationMessageFor(model => model.會員密碼, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="row">
+                    <div class="col-mb-12">
+                        <div class="d-grid gap-2">
+                            <button class="btn btn-outline-secondary save mb-1" type="submit">登 入</button>
+                            <p class="text-danger text-center mb-5">@ViewBag.Message</p>
+
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-10">
+                    <a href="~/Home/ForgetPassword"><img src="~/Images/member/問號.svg">忘記密碼</a>
+                </div>
+
+                <div class="text-center" style="margin: 2rem;">
+                    <p>還不是會員嗎? @Html.ActionLink("立刻註冊新帳號", "Register")</p>
+                </div>
+
+
+            }
+        </div>
+    </div>
+</div>

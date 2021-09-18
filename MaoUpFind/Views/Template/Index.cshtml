@@ -1,0 +1,80 @@
+﻿@using (Html.BeginForm("Send", "Template", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="container col-md-8">
+        <div class="row d-flex">
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-6">
+                        @Html.Label("城市", htmlAttributes: new { @class = "form-label" })
+                        @Html.DropDownList("city", GetddItemData.取得城市(), new { @class = "form-select", onChange = "city_ChangeHandler()" })
+                    </div>
+                    <div id="area" class="col-md-6"></div>
+                </div>
+
+            </div>
+        </div>
+        <div class="row mt-4">
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-6">
+                        @Html.Label("動物別", htmlAttributes: new { @class = "form-label" })
+                        @Html.DropDownList("animal", GetddItemData.取得動物別(), new { @class = "form-select", onChange = "animal_ChangeHandler()" })
+                    </div>
+                    <div id="animalVariety" class="col-md-6"></div>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-4">
+            <div class="col-md-12">
+                <div class="row">
+                    @Html.Partial("_FileUpload")
+                </div>
+            </div>
+        </div>
+        <br />
+    </div>
+}
+<script>
+    ;(function () {
+        city_ChangeHandler();
+        animal_ChangeHandler();
+    })()
+    // 地區下拉事件
+    function city_ChangeHandler() {
+        var city = $("select[name='city']").val();
+        showAreaDropDownList(city);
+    }
+    function showAreaDropDownList(city) {
+        $.ajax({
+            url: "@Url.Action("_AreaDropDownList", "Template")",
+            type: 'get',
+            data: {
+                city: city,
+                title: '請選擇地區',
+            },
+            async: false,
+            success: function (data) {
+                $('div #area').empty().html(data);
+            }
+        })
+    }
+    // 動物下拉事件
+    function animal_ChangeHandler() {
+        var animal = $("select[name='animal']").val();
+        showAnimalVariety(animal);
+    }
+    function showAnimalVariety(animal) {
+        $.ajax({
+            url: "@Url.Action("_AnimalVarietyDropDownList", "Template")",
+            type: 'get',
+            data: {
+                animal: animal,
+                title: '動物別',
+            },
+            async: false,
+            success: function (data) {
+                $('div #animalVariety').empty().html(data);
+            }
+        })
+    }
+</script>

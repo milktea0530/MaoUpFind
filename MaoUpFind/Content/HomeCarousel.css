@@ -1,0 +1,50 @@
+﻿
+/* 圖片輪播 */
+.card-carousel {
+    padding: 0;
+    max-width: 650px;
+    margin: auto auto;
+    height: 500px;
+}
+
+.card-img {
+    object-fit: cover;
+    object-position: center center;
+    width: 100%;
+    height: 100%;
+}
+
+.card-img-overlay {
+    padding: 0;
+}
+
+.contect * {
+    text-align: center;
+    margin: 0;
+}
+
+.contect p {
+    padding: 0;
+    margin: 0;
+}
+
+.contect {
+    border-radius: 40% 40% 0% 0%/15% 15% 0% 0%;
+    -webkit-border-radius: 40% 40% 0% 0%/15% 15% 0% 0%;
+    -moz-border-radius: 40% 40% 0% 0%/15% 15% 0% 0%;
+    background-color: rgba(255, 255, 255, 0.6);
+    padding-top: 1rem;
+    position: absolute;
+    bottom: 0;
+    height: 30%;
+    overflow: hidden;
+    transition: background 0.3s linear, height 0.3s;
+    color: #222;
+}
+
+    .contect:hover {
+        height: 60%;
+        background-color: rgba(255, 255, 255, 0.9);
+        transition: background 0.2s linear, height 0.2s;
+        color: #333;
+    }

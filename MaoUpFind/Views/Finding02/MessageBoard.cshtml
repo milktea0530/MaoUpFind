@@ -1,0 +1,104 @@
+﻿@model List<MaoUpFind.ViewModels.VM_Finding02_MessageBoard>
+@{
+    string bId = ViewBag.bId;
+    string LoginID = "";
+    if (Session["SK_LOGINED_ID"] != null) { LoginID = Session["SK_LOGINED_ID"].ToString(); }
+}
+@* 可看到  =1 || (=2 && lid(登入) = bid(刊登) || lid(登入) = uid(留言)) *@
+@{
+    foreach (var item in Model)
+    {
+        if (item.是否公開 == "1" ||
+            (item.是否公開 == "2" &&
+                (LoginID == bId || LoginID == item.會員編號.ToString())
+            )
+        )
+        {
+            <div class="d-flex justify-content-between flex-wrap msg-head py-1">
+                <div class="d-flex align-items-start px-2">
+                    <h5>@item.會員暱稱</h5>
+                </div>
+            </div>
+            <div class="d-flex flex-column msg-body p-1 mb-3">
+                <div class="d-flex justify-content-start px-2">
+                    <p>
+                        @item.留言內容
+                    </p>
+                </div>
+                <div class="d-flex justify-content-between align-items-center px-2">
+                    <div>
+                        @if (item.是否按讚 == 1)
+                        {
+                            <input type="checkbox" class="btn-check" id="btn-check-outlined-@item.留言編號" data-mbid="@item.留言編號" autocomplete="off" checked>
+                        }
+                        else
+                        {
+                            <input type="checkbox" class="btn-check" id="btn-check-outlined-@item.留言編號" data-mbid="@item.留言編號" autocomplete="off">
+                        }
+                        <label class="btn btn-outline-primary" for="btn-check-outlined-@item.留言編號">
+                            <label id="gnum-@item.留言編號">@item.按讚數</label>讚
+                        </label>
+
+                        @*<label class="btn btn-outline-primary" for="btn-check-outlined-@item.留言編號">讚</label><br>*@
+                        @Html.Hidden("IsGood-" + item.留言編號, item.是否按讚)
+                        @Html.Hidden("GoodID-" + item.留言編號, item.按讚編號)
+                    </div>
+                    <div>@item.留言日期</div>
+                </div>
+            </div>
+        }
+        else
+        {
+            <div style="color:red" class=" msg-head mb-3 px-2">私人訊息</div>
+        }
+    }
+}
+
+<script>
+    // 主要修改目前是點否點讚, 存放hidden, 並送出事件修改按讚資料並取得按讚數量
+    $('.btn-check').change(function () {
+        var saveThis = this;
+        // 防再次點擊, 所以設定disabled
+        $(saveThis).prop("disabled", true);
+        //console.log(this);
+        //console.log(this.id);
+        //console.log($("#" + this.id).data("goodid"));
+        // 取得點選的checkbox的data-*資料(為了取得id)
+        var mbid = $("#" + this.id).data("mbid");
+        // 取得hidden的值(用來判別是否勾選) 因為要把值反向
+        var isgvalue = $("#IsGood-" + mbid).val();
+        var isTrueSet = !(isgvalue === '1' || isgvalue === "true");
+        //console.log(isTrueSet);
+        //$("#IsGood-" + mbid).val(isTrueSet);
+        var gid = $("#GoodID-" + mbid).val();
+        // 送出事件到後端
+        $.ajax({
+            url: "@Url.Action("SetGood", "Bulletin03")",
+            type: 'get',
+            data: {
+                isTrueSet: isTrueSet,   // 是否勾選
+                mbid: mbid,   // 留言編號
+                gid: gid      // 按讚編號
+            },
+            async: true,
+            success: function (data) {
+                if (data.IsSuccess) {
+                    // 重製按讚數
+                    $('#gnum-' + mbid).empty().text(data.GoodNum);
+                    // 設定按讚編號
+                    $('#GoodID-' + mbid).val(data.gid);
+                    $("#IsGood-" + mbid).val(isTrueSet);
+                } else {
+                    // 重設按紐
+                    $(saveThis).prop('checked', !isTrueSet);
+                    // 重製資料
+                    $("GoodID-" + mbid).val("")
+                    $("#IsGood-" + mbid).val(!isTrueSet);
+                    alert("請登入會員!");
+                }
+                // 關閉disabled
+                $(saveThis).prop("disabled", false);
+            },
+        })
+    });
+</script>

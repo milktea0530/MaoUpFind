@@ -1,0 +1,44 @@
+﻿
+@{
+    ViewBag.Title = "註冊確認";
+
+}
+<link href="~/Content/Login.css" rel="stylesheet" />
+<div class="container mt-5 col-md-4">
+    <div class="row justify-content-center">
+        <div class="mt-2 mb-2" style="background-color: white;">
+            @using (Html.BeginForm("RegisterChecked", "Home", FormMethod.Post, new { @class = "row justify-content-center", style = "background: white;" }))
+            {
+                <p class="text-center" style="color:#515151; margin:2rem;">
+                    已將驗證信寄至 @ViewBag.txtEmail<br>
+                    請在20分內完成驗證手續。
+                    
+                </p>
+
+                <div class="form-group col-md-10">
+                    <div class="input-group">
+                        
+                        @Html.TextBox("checkedCode", null, new { placeholder = "請輸入驗證碼", @class="form-control form-reg", required = true })
+                    </div>
+                    @Html.TextBox("Email", null, new { type = "hidden", value = @ViewBag.txtEmail })
+
+
+
+                    <div class="row">
+                        <div class="col-mb-12">
+                            <div class="d-grid gap-2">
+                                <button class="btn btn-outline-secondary save" type="submit">送出</button>
+                                <p class="text-danger text-center mb-5">@ViewBag.Message</p>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                </div>
+            }
+        </div>
+    </div>
+</div>
+

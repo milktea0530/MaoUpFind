@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="15" height="15" viewBox="0 0 15 15">
+  <defs>
+    <style>
+      .cls-1, .cls-3 {
+        fill: #515151;
+      }
+
+      .cls-1 {
+        stroke: #707070;
+      }
+
+      .cls-2 {
+        clip-path: url(#clip-path);
+      }
+    </style>
+    <clipPath id="clip-path">
+      <rect id="Rectangle_108" data-name="Rectangle 108" class="cls-1" width="15" height="15" transform="translate(816 220)"/>
+    </clipPath>
+  </defs>
+  <g id="Mask_Group_27" data-name="Mask Group 27" class="cls-2" transform="translate(-816 -220)">
+    <path id="envelope" class="cls-3" d="M0,3.75A1.875,1.875,0,0,1,1.875,1.875h11.25A1.875,1.875,0,0,1,15,3.75v7.5a1.875,1.875,0,0,1-1.875,1.875H1.875A1.875,1.875,0,0,1,0,11.25Zm1.875-.937a.937.937,0,0,0-.937.938v.2L7.5,7.891l6.563-3.937v-.2a.938.938,0,0,0-.937-.937ZM14.063,5.047,9.6,7.723l4.461,2.7V5.048Zm-.032,6.448L8.692,8.269,7.5,8.984,6.308,8.269.969,11.494a.938.938,0,0,0,.906.694h11.25A.937.937,0,0,0,14.031,11.495ZM.938,10.419,5.4,7.723.938,5.047v5.372Z" transform="translate(816 220)"/>
+  </g>
+</svg>

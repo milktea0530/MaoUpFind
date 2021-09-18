@@ -1,0 +1,41 @@
+﻿#footer {
+    text-align: center;
+    min-height: 150px;
+    bottom: 0;
+    background-color: #03A6A6;
+    opacity: 0.5;
+    padding-top: 20px;
+    padding-bottom: 2px;
+    width: 100%;
+}
+
+    #footer ul li a {
+        font-size: 1.25rem;
+        color: #FFF8ED;
+        font-weight: normal;
+    }
+
+    #footer img {
+        height: 36px;
+        /* width: 100%;
+    object-fit: contain; */
+    }
+
+.list-unstyled {
+    padding-left: 0;
+    list-style: none;
+}
+
+.copyright {
+    color: #FFF8ED;
+}
+
+.container li {
+    list-style-type: none;
+    padding: 5px 10px;
+}
+
+.footer {
+    display: flex;
+    justify-content: center;
+}

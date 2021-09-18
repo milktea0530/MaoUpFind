@@ -1,0 +1,15 @@
+﻿@model MaoUpFind.Models.刊登認養
+<body class="adoption_background">
+    <div class="container">
+        <div class="jumbotron">
+            @*<h3 class="display-4">成功建立通報!</h3>*@
+            <p class="lead">刊登認養成功!</p>
+            <hr class="my-4">
+            <p>認養單號: @Model.認養單號</p>
+            <p>認養標題: @Model.認養標題</p>
+            <p class="lead">
+                <a class="btn btn-primary btn-lg" href="~/Adoption02/detailView?number=@Model.認養單號" role="button">前往寵物媒合</a>
+            </p>
+        </div>
+    </div>
+</body>

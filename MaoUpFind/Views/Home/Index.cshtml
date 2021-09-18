@@ -1,0 +1,145 @@
+﻿@model MaoUpFind.ViewModels.VM_Home_Carousel
+@{
+    ViewBag.Title = "首頁";
+}
+<link href="~/Content/owl.theme.default.min.css" rel="stylesheet" />
+<link href="~/Content/owl.carousel.min.css" rel="stylesheet" />
+<link href="~/Content/HomeCarousel.css" rel="stylesheet" />
+<link href="~/Content/home.css" rel="stylesheet" />
+<script src="~/Scripts/owl.carousel.min.js"></script>
+<script src="~/Scripts/owlCarousel.js"></script>
+
+<div class="container min-h-100pct">
+    <!-- 圖片輪播 -->
+    <div class="container mb-5">
+        <div class="owl-carousel owl-theme mt-5">
+
+            @{ foreach (var item in Model.通報)
+                {
+                    <div class="col">
+                        <div class="card-carousel">
+                            <img src="~/FileUpload/@item.附件一"
+                                 class="card-img" alt="@item.通報標題">
+                            <div class="card-img-overlay">
+                                <a href="@Url.Action("detailView", "Bulletin03", new { number = item.通報單號 })">
+                                    <div class="contect col-12">
+                                        <p style="color:#e55252">線上通報</p>
+                                        <h5 class="card-title">@item.通報標題</h5>
+                                        <p class="card-place">@item.發生地點_全</p>
+                                        <p class="card-date">@item.通報時間</p>
+                                        <p class="card-text">@item.狀況概述</p>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+
+            @{ foreach (var item in Model.認養)
+                {
+                    <div class="col">
+                        <div class="card-carousel">
+                            <img src="~/FileUpload/@item.附件一"
+                                 class="card-img" alt="@item.認養標題">
+                            <div class="card-img-overlay">
+                                @*<a href="./detailView?number=@item.通報單號">*@
+                                <a href="@Url.Action("detailView", "Adoption02", new { number = item.認養單號 })">
+                                    <div class="contect col-12">
+                                        <p style="color:#754cdc">寵物認養</p>
+                                        <h5 class="card-title">@item.認養標題</h5>
+                                        <p class="card-place">@item.寵物所在地點_全</p>
+                                        <p class="card-date">認養截止日 @item.結束時間</p>
+                                        <p class="card-text">@item.刊登原因</p>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+
+            @{ foreach (var item in Model.協尋)
+                {
+                    <div class="col">
+                        <div class="card-carousel">
+                            <img src="~/FileUpload/@item.附件一"
+                                 class="card-img" alt="@item.協尋標題">
+                            <div class="card-img-overlay">
+                                @*<a href="./detailView?number=@item.通報單號">*@
+                                <a href="@Url.Action("detailView", "Finding02", new { number = item.協尋單號 })">
+                                    <div class="contect col-12">
+                                        <p style="color:#207caa">寵物協尋</p>
+                                        <h5 class="card-title">@item.協尋標題</h5>
+                                        <p class="card-place">@item.走失地點_全</p>
+                                        <p class="card-date">走失時間 @item.走失時間</p>
+                                        <p class="card-text">@item.備註</p>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+
+    <!-- 三大功能簡介區 -->
+    <div class="container container-card mb-5">
+        <div>
+            <div class="card-title-outer">
+                <h5 class="">Mao Up Find</h5>
+                <div class="card-title-inner">
+                    <h1 class="">Posting area</h1>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <a href="@Url.Action("Index", "Bulletin03")" class="col-lg-4 mb-3">
+                <div class="card shycard">
+                    <img src="https://images.pexels.com/photos/1108099/pexels-photo-1108099.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+                         class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <img src="~/Images/svg/通報.svg" alt="" style="width: 40px;">
+                        <h2 class="card-title">線上通報</h2>
+                        <p class="card-text">當發現街邊浪浪時，若能力許可請透過地圖查詢附近醫院，協助浪浪就醫。</p>
+                        <p class="card-text">若礙於手邊事務無法及時進行救援，可透過此處刊登，讓其他民眾提供協助，也請刊登者負起責任，將資訊盡量完整填寫。</p>
+                        @*<a href="#" class="btn btn-primary bg-secondary border-0">Go somewhere</a>*@
+                    </div>
+                </div>
+            </a>
+
+            <a href="@Url.Action("Index", "Adoption02")" class="col-lg-4 mb-3">
+                <div class="card shycard">
+                    <img src="https://images.pexels.com/photos/1805164/pexels-photo-1805164.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+                         class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <img src="~/Images/svg/認養.svg" alt="" style="width: 40px;">
+                        <h2 class="card-title">寵物認養</h2>
+                        <p class="card-text">若有毛孩需送養可透過此區功能做刊登，請為毛孩仔細挑選有責任感的領養人，才能讓毛孩有個溫暖的家喔! </p>
+                        <p class="card-text">此區的送養動物均由送養人刊登，所有送養人信箱均經過驗證，如有任何領養問題可直接與送養人聯繫。領養前請謹慎考慮，不隨意棄養。 </p>
+                        @*<a href="#" class="btn btn-primary bg-secondary border-0">Go somewhere</a>*@
+                    </div>
+                </div>
+            </a>
+
+            <a href="@Url.Action("Index", "Finding02")" class="col-lg-4 mb-3">
+                <div class="card shycard">
+                    <img src="https://images.pexels.com/photos/1183434/pexels-photo-1183434.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+                         class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <img src="~/Images/svg/協尋.svg" alt="" style="width: 40px;">
+                        <h2 class="card-title">寵物協尋</h2>
+                        <p class="card-text">毛孩失蹤的焦急心情我們能夠理解，因此設立寵物協尋的版面，可以透過此處的刊登讓更多人知道。</p>
+                        <p class="card-text">請留意將刊登資訊盡可能完整填寫，讓協尋民眾更容易提供協助喔!</p>
+                        @* <a href="#" class="btn btn-primary bg-secondary border-0">Go somewhere</a>*@
+                    </div>
+                </div>
+            </a>
+
+            <!--  -->
+            <div class="clearfix hidden-xs"></div>
+        </div>
+
+    </div>
+</div>

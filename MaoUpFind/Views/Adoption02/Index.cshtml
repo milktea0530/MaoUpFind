@@ -1,0 +1,65 @@
+﻿@model IEnumerable<MaoUpFind.ViewModels.VM_Adoption02_DetailView>
+@{
+    ViewBag.title = "寵物媒合";
+}
+<title>寵物媒合</title>
+<link href="~/Content/Adoption02_a.css" rel="stylesheet" />
+<!-- 這裡面放各頁面主要內容 -->
+<!-- 這裡面放各頁面主要內容 -->
+<body class="adoption_background">
+    <div class="container min-h-100pct mt-3">
+        <!--麵包屑-->
+        <div>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#">首頁</a></li>
+                    <li class="breadcrumb-item"><a href="#">寵物領養</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">寵物媒合</li>
+                </ol>
+            </nav>
+        </div>
+
+        @Html.Partial("_QueryView")
+        @*<p class="text-center mt-3">當前排序方式: 所有區間/日期排序(由新到舊)</p>*@
+        <div class="row row-cols-1 row-cols-md-2 row-cols-xxl-3 justify-content-around">
+            @{ foreach (var item in Model)
+                {
+                    <div class="col">
+                        <div class="card">
+                            <img src="~/FileUpload/@item.附件一"
+                                 class="card-img" alt="@item.認養標題">
+                            <div class="card-img-overlay">
+                                @*<a href="./detailView?number=@item.通報單號">*@
+                                <a href="@Url.Action("detailView", "Adoption02", new { number = item.認養單號 })">
+                                    <div class="contect col-12">
+                                        <h5 class="card-title">@item.認養標題</h5>
+                                        <p class="card-place">@item.寵物所在地點_全</p>
+                                        <p class="card-date">認養截止日 @item.結束時間</p>
+                                        <p class="card-text">@item.刊登原因</p>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div> } }
+        </div>
+    </div>
+</body>
+<script>
+    function submitHandler() {
+        var startDate = $("#startDate").val();
+        var endDate = $("#endDate").val();
+        if (startDate == "" && endDate != "") {
+            alert("請選擇開始時間")
+            return false;
+        }
+        if (startDate != "" && endDate == "") {
+            alert("請選擇結束時間")
+            return false;
+        }
+        if (endDate < startDate) {
+            alert("開始時間不得大於結束時間");
+            return false;
+        }
+        return true;
+    }
+</script>

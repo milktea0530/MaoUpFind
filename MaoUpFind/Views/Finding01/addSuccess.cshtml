@@ -1,0 +1,16 @@
+﻿@model MaoUpFind.Models.刊登協尋
+
+<body class="finding_background">
+    <div class="container">
+        <div class="jumbotron">
+            @*<h3 class="display-4">刊登協尋成功!</h3>*@
+            <p class="lead">刊登協尋成功!</p>
+            <hr class="my-4">
+            <p>協尋單號: @Model.協尋單號</p>
+            <p>協尋標題: @Model.協尋標題</p>
+            <p class="lead">
+                <a class="btn btn-primary btn-lg" href="~/Finding02/detailView?number=@Model.協尋單號" role="button">前往查詢專欄</a>
+            </p>
+        </div>
+    </div>
+</body>

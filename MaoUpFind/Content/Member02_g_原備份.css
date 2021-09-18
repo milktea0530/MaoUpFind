@@ -1,0 +1,102 @@
+﻿
+form {
+    font-size: 1.2rem;
+}
+
+/*導覽與內容的分隔線*/
+.line {
+    height: 300px;
+    background: #e3dddd;
+}
+
+/* placeholder(佔位符)顏色 */
+::placeholder {
+    /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: #bbb !important;
+    /* 有別的ＣＳＳ的優先順序比較高 不用important的話蓋不掉 */
+}
+
+
+/*導覽頁籤樣式*/
+#tab-demo {
+    /* width: 350px;
+            height: 200px; */
+    margin: 10px;
+}
+
+    #tab-demo > ul {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+        /*justify-content處理水平位置，center置中*/
+        align-items: center;
+        /*當三個BOX高度不同時，用來置中三個BOX，會從父層的中心線對齊*/
+        padding-inline-start: 0px;
+        /*取消左邊不知道哪裡來的寬度*/
+        /* display: block; */
+        margin: 0;
+        list-style: none;
+    }
+
+.tab-title {
+    list-style: none;
+}
+
+#tab-demo > ul > li {
+    display: inline-block;
+    vertical-align: top;
+    font-family: '微軟正黑體';
+    margin: 0 -1px -1px 0;
+    /* border: 1px solid #BCBCBC; */
+    height: 25px;
+    line-height: 25px;
+    /* background: #cdcdcd; */
+    padding: 0 15px;
+    list-style: none;
+    box-sizing: border-box;
+}
+
+    #tab-demo > ul > li a {
+        color: rgb(83, 83, 83);
+        text-decoration: none;
+    }
+
+    #tab-demo > ul > li.active {
+        border-bottom: 1px solid #fff;
+        background: #fff;
+    }
+
+
+    #tab-demo > ul > li a:hover {
+        font-weight: bold;
+        color: rgb(56, 53, 53);
+        text-decoration: none;
+        border-bottom: 2px solid rgba(98, 146, 209, 0.521);
+    }
+
+
+.tab-inner {
+    color: #515151;
+    padding: 15px;
+    /* display: flex; */
+    /* justify-content:center; */
+    /* height: 50px; */
+}
+
+/*儲存按鈕*/
+
+.save {
+    background-color: #FFF8ED;
+    margin: 2rem;
+}
+
+    .save:hover {
+        color: #fff;
+        background-color: #6c757d;
+    }
+
+    .save:active {
+        color: #fff;
+        background-color: #6c757d;
+        border-color: #6c757d;
+    }

@@ -1,0 +1,6 @@
+﻿@{
+    int city = ViewBag.City;
+    string title = ViewBag.Title;
+    string area = ViewBag.Area;
+}
+@Html.DropDownList(title, GetddItemData.取得區(city, area), new { @class = "form-select" })

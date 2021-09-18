@@ -1,0 +1,247 @@
+﻿@model  MaoUpFind.Models.通報資料
+<link href="~/Content/upload.css" rel="stylesheet" />
+<link href="~/Content/popup-style.css" rel="stylesheet" />
+<script src="~/Scripts/aj-address.js"></script>
+<style>
+    body {
+        color: #515151;
+    }
+
+    form {
+        font-size: 1.2rem;
+    }
+
+    .line {
+        height: 3px;
+        width: 160px;
+        background: #f6d8a1;
+    }
+
+    /* placeholder顏色 */
+    ::placeholder {
+        /* Chrome, Firefox, Opera, Safari 10.1+ */
+        color: #bbb !important;
+        /* 有別的ＣＳＳ的優先順序比較高 不用important的話蓋不掉 */
+    }
+
+
+
+    /*已詳閱通報須知 樣式*/
+    .form-check .form-check-input {
+        margin-left: -2.5em;
+        float: none;
+    }
+
+    /**/
+    .pic img {
+        object-fit: cover;
+        object-position: center center;
+    }
+
+    /*選擇照片 樣式*/
+    label[for="file"] {
+        display: inline-block;
+        font-weight: 400;
+        line-height: 1.5;
+        color: #212529;
+        text-align: center;
+        text-decoration: none;
+        vertical-align: middle;
+        cursor: pointer;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+        background-color: transparent;
+        border: 1px solid #515151;
+        padding: .375rem .75rem;
+        font-size: 1rem;
+        border-radius: .25rem;
+        transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+    }
+
+        label[for="file"]:hover {
+            color: #fff;
+            background-color: #6c757d;
+            border-color: #6c757d;
+        }
+
+        label[for="file"]:active {
+            color: #fff;
+            background-color: #6c757d;
+            border-color: #6c757d;
+        }
+
+    #letmeopen {
+        position: fixed;
+        z-index: 9999 !important;
+        font-size: 1.8rem;
+    }
+</style>
+<script>
+    $(function () {
+        $('.address-zone').ajaddress();
+    });
+</script>
+
+<div class="container min-h-100pct mb-5">
+    <!--麵包屑-->
+    <div>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="#">首頁</a></li>
+                <li class="breadcrumb-item"><a href="#">線上通報</a></li>
+                <li class="breadcrumb-item active" aria-current="page">建立通報紀錄</li>
+            </ol>
+        </nav>
+    </div>
+
+    <!-- 表格 -->
+    <div class="container mt-5 col-md-8">
+        <h3>通報表單</h3>
+        <div class="line"></div>
+        <div class="row justify-content-center">
+            <div class="mt-4">
+                @using (Html.BeginForm("Create", "Bulletin01", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
+                    @* 通報標題 *@
+                    <div class="row mb-3">
+                        <div class="col-md-12">
+                            <label for="title" class="form-label">通 報 標 題</label>
+                            @Html.TextBoxFor(m => m.通報標題, "", new { @class = "form-control", placeholder = "請簡單敘述這則通報，如：台南育樂街被丟棄的小白" })
+                        </div>
+                    </div>
+                    @* 急迫性 *@
+                    <div class="row mb-3">
+                        <div class="col-md-12">
+                            <label for="urgent" class="form-label">急 迫 性</label>
+                            @*<div class="input-group">
+                        <select id="urgent" class="form-select" onchange="urgentChange()">
+                            <option selected disabled>--請選擇--</option>
+                            <option value="level 1">需急救（需要立即處置）</option>
+                            <option value="level 2">危急（有潛在性生命危險）</option>
+                            <option value="level 3">緊急（狀況可能惡化）</option>
+                            <option value="level 4">次緊急（慢性病或某些疾病之合併症）</option>
+                            <option value="level 5">非緊急</option>
+                        </select>
+                    </div>*@
+                            @Html.DropDownListFor(m => m.急迫性編號, GetddItemData.取得急迫性(), new { @class = "form-select" })
+                        </div>
+                    </div>
+                    @* 會員編號稱謂電話 *@
+                    @Html.HiddenFor(m => m.會員編號)
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label for="name" class="form-label">稱 謂</label>
+                            @*<input type="text" id="name" class="form-control" placeholder="請輸入您的名字或稱呼">*@
+                            @Html.TextBoxFor(m => m.會員暱稱, "", new { @class = "form-control", placeholder = "請輸入您的名字或稱呼" })
+                        </div>
+                        <div class="col-md-6">
+                            <label for="phone" class="form-label">電 話</label>
+                            @*<input type="text" id="phone" class="form-control" placeholder="請輸入您的電話號碼">*@
+                            @Html.TextBoxFor(m => m.會員電話, "", new { @class = "form-control", placeholder = "請輸入您的電話號碼" })
+                        </div>
+                    </div>
+                    <!-- 可能有一些縣市有問題 -->
+                    <div class="row mb-3 address-zone">
+                        <div class="col-md-6">
+                            <label for="county" class="form-label">所 在 縣 市</label>
+                            <select class="city form-select">
+                                <option value="" selected disabled>--請選擇--</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="district" class="form-label">所 在 地 區</label>
+                            <select class="county form-select">
+                                <option value="">--請選擇--</option>
+                            </select>
+                        </div>
+                    </div>
+                    @* 完整地點*@
+                    <div class="row mb-3">
+                        <div class="col-md-12">
+                            <label for="place" class="form-label">地 點</label>
+                            @*<input type="text" id="place" class="form-control"
+                    placeholder="請輸入地址及地標，如：大學路1號（7-11前）">*@
+                            @Html.TextBoxFor(m => m.發生地點_全, "", new
+                            {
+                                @class = "form-control",
+                                   placeholder = "請輸入地址及地標，如：大學路1號（7-11前）"
+                            })
+                        </div>
+                    </div>
+                    @* 狀況概述*@
+                    <div class="row mb-4">
+                        <div class="col-md-12">
+                            <label for="message" class="form-label">狀 況 概 述</label>
+                            @*<textarea id="message" rows="10" class="form-control"
+                    placeholder="請概述目前的狀況，如受傷情況"></textarea>*@
+                            @Html.TextArea("狀況概述", new
+                            {
+                                rows = "10",
+                                @class = "form-control",
+                                      placeholder = "請概述目前的狀況，如受傷情況"
+                            })
+                        </div>
+                    </div>
+                    <!--現場照片-->
+                    <div class="row mb-4 d-flex">
+                        <div class="col-md-12">
+                            <label for="message" class="form-label">現 場 照 片</label>
+                            <div class="row mb-3 pic">
+                                <div class="col-md-4 mt-3">
+                                    <div class="preview">
+                                        <img src="" id="look1">
+                                        <p class="word"><nobr>圖片1（專欄主照片）</nobr></p>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 mt-3">
+                                    <div class="preview">
+                                        <img src="" id="look2">
+                                        <p class="word">圖片2</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 mt-3">
+                                    <div class="preview">
+                                        <img src="" id="look3">
+                                        <p class="word">圖片3</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="uploadImage">
+                                <input type="file" value="上傳檔案" id="file" name="photo"
+                                       accept="image/png, image/jpeg, image/gif, image/jpg" multiple />
+                                <label for="file">選擇照片</label>
+                                <!-- <input id="file" name="file" type="file" multiple> -->
+                                <ul id="file-list">
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    @* 同意(需要欄位紀錄) *@
+                    <div class="row mb-4">
+                        <div class="col-md-12">
+                            <input type="checkbox" name="isChecked" id="open_modal" class="form-check-input" data-bs-toggle="modal" data-bs-target="#exampleModal" />
+                            <label for="open_modal">我已經詳細閱讀並且同意通報須知</label>
+                            @Html.Partial("_modal")
+                        </div>
+                    </div>
+                    @* 送出表單按鈕 *@
+                    <div class="row">
+                        <div class="col-mb-12">
+                            <div class="d-grid gap-2">
+                                <button class="btn btn-outline-secondary" type="button" onclick="submitHandler">送 出 通 報</button>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/Scripts/upload.js"></script>
+<script src="~/Scripts/popup-script.js"></script>
+<script>
+    function submitHandler() {
+        
+    }
+</script>

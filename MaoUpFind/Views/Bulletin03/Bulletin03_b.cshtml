@@ -1,0 +1,151 @@
+﻿
+@{
+    ViewBag.Title = "Bulletin03_b";
+}
+
+<head>
+   
+    <title>查詢專欄-詳細資料</title>
+    <link href="~/Content/Adoption02_b.css" rel="stylesheet" />
+
+</head>
+
+<body>
+   
+    <!-- 這裡面放各頁面主要內容 -->
+    <div class="container min-h-100pct mt-3">
+
+        <!--麵包屑-->
+        <div>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#">首頁</a></li>
+                    <li class="breadcrumb-item"><a href="#">線上通報</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">查詢專欄</li>
+                </ol>
+            </nav>
+        </div>
+
+        <div class="row justify-content-around">
+
+            <!-- 左邊 -->
+            <div class="info col col-xl-7 p-4">
+
+                <!-- 圖片區 -->
+                <div class="row justify-content-around">
+                    <div class="col-md-8">
+                        <img src="https://images.pexels.com/photos/247502/pexels-photo-247502.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+                             class="card-img" alt="...">
+                    </div>
+
+                    <div class="col col-md-4">
+                        <img src="https://images.pexels.com/photos/572861/pexels-photo-572861.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+                             alt="">
+                        <img src="https://images.pexels.com/photos/688885/pexels-photo-688885.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+                             alt="">
+                    </div>
+                </div>
+
+                <!-- 內容 -->
+                <h3 class="m-3">台南育樂街被拋棄的小白</h3>
+                <p style="border: rgb(206, 137, 10) 1px solid; width: 70%; margin: 16px;"></p>
+                <p>
+                    <img src="./images/bbb/place.svg" alt="" width="32px" class="mx-2"> 台南市東區大學路一號
+                </p>
+                <p>
+                    <img src="./images/bbb/calendar.svg" alt="" width="32px" class="mx-2"> 2021/06/31 20:33
+                </p>
+                <p>
+                    <img src="./images/bbb/alarm-clock.svg" alt="" width="32px" class="mx-2"> 急迫性高
+                </p>
+                <div class="d-flex">
+                    <div class="mx-2">
+                        <img src="./images/bbb/copy.svg" alt="" width="32px">
+                    </div>
+                    <div>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente culpa consequuntur cumque
+                        voluptate hic quos, quisquam expedita eius? Facere doloribus voluptas corrupti quae culpa
+                        laborum deserunt optio. Quae rerum, at, aut error recusandae, voluptas perspiciatis molestiae
+                        quibusdam impedit cum iste aliquid sit. Velit, repudiandae? Beatae sequi non dignissimos libero
+                        quod?
+                    </div>
+
+                </div>
+
+
+            </div>
+
+            <!-- 右邊 留言板 -->
+            <div class="col-xl-5 p-4">
+                <div class="board bg-light border p-3">
+                    <div class="d-flex justify-content-center mb-4">
+                        <h2>留言紀錄</h2>
+                    </div>
+
+                    <div class="board-body">
+
+                        <!--  -->
+                        <div class="d-flex justify-content-between flex-wrap msg-head py-1">
+                            <div class="d-flex align-items-center px-2">
+                                <h5>Will</h5>
+                            </div>
+                            <div class="px-2">
+                                發布時間: 2021/06/30 03:22:30
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-start msg-body p-1 mb-3">
+                            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit.</p>
+                        </div>
+
+                        <!--  -->
+                        <div class="d-flex justify-content-between flex-wrap msg-head py-1">
+                            <div class="d-flex align-items-center px-2">
+                                <h5>Mary</h5>
+                            </div>
+                            <div class="px-2">
+                                發布時間: 2021/06/30 03:22:30
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-start msg-body p-1 mb-3">
+                            <p>
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero, eaque id optio libero
+                                totam quisquam similique voluptas quod officia velit cupiditate eius a quos
+                                necessitatibus.
+                            </p>
+                        </div>
+
+                        <!--  -->
+                        <div class="d-flex justify-content-between flex-wrap msg-head py-1">
+                            <div class="d-flex align-items-center px-2">
+                                <h5>Peter</h5>
+                            </div>
+                            <div class="px-2">
+                                發布時間: 2021/06/30 03:22:30
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-start msg-body p-1 mb-3">
+                            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit.</p>
+                        </div>
+
+                    </div>
+
+                    <div class="board-foot">
+                        <form action="">
+                            <div class="row justify-content-end align-items-center">
+
+                                <div class="col-3">
+                                    <input type="text" id="" class="form-control" placeholder="稱呼">
+                                </div>
+                                <div class="col-8 pe-5">
+                                    <input type="password" id="" class="form-control" placeholder="輸入內容">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+

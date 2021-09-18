@@ -1,0 +1,215 @@
+﻿
+@{
+    ViewBag.Title = "Bulletin03_a";
+}
+
+
+<head>
+    <title>查詢專欄</title>
+    <link href="~/Content/Adoption02_a.css" rel="stylesheet" />
+</head>
+
+<body>
+ 
+    <!-- 這裡面放各頁面主要內容 -->
+    <div class="container min-h-100pct mt-3">
+
+        <!--麵包屑-->
+        <div>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#">首頁</a></li>
+                    <li class="breadcrumb-item"><a href="#">線上通報</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">查詢專欄</li>
+                </ol>
+            </nav>
+        </div>
+
+        <div class="text-center mt-3 mb-5">
+            <h1 class="mb-3">查詢通報紀錄</h1>
+            <form action="">
+                <div class="row align-items-center justify-content-center">
+                    <!--  -->
+                    <div class="col-8 col-xl-5 my-3">
+                        <div class="row align-items-center justify-content-center">
+                            <div class="col-12 col-md-5 my-1">
+                                <input type="date" id="BeginDate" class="form-control" aria-describedby="" max-size="50">
+                            </div>
+                            <div class="col-12 col-md-1 my-0">
+                                <span>至</span>
+                            </div>
+                            <div class="col-12 col-md-5 my-3">
+                                <input type="date" id="EndDate" class="form-control" aria-describedby="">
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!--  -->
+                    <div class="col-8 col-xl-3">
+                        <div class="row align-items-center justify-content-center">
+                            <div class="col-12 col-md-8 col-xl-auto">
+                                <select id="sortType" class="form-select" width="100%">
+                                    <option>日期(由新到舊)</option>
+                                    <option>日期(由舊到新)</option>
+                                    <option>觀看次數</option>
+                                </select>
+                            </div>
+                            <div class="col-12 col-xl-auto my-3">
+                                <button type="submit" class="btn btn-primary bg-secondary border-0">查詢</button>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+
+                </div>
+            </form>
+        </div>
+
+        <p class="text-center mt-3">當前排序方式: 所有區間/日期排序(由新到舊)</p>
+
+        <div class="row row-cols-1 row-cols-md-2 row-cols-xxl-3 justify-content-around">
+            <div class="col">
+                <div class="card">
+                    <img src="https://images.pexels.com/photos/572861/pexels-photo-572861.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+                         class="card-img" alt="...">
+
+                    <div class="card-img-overlay">
+                        <a href="./bulletin_search_b.html">
+                            <div class="contect">
+                                <h5 class="card-title">成功大學附近流浪貓咪</h5>
+                                <p class="card-place">台南市東區大學路一號</p>
+                                <p class="card-date">2020/6/30</p>
+                                <p class="card-text">
+                                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Commodi
+                                    provident magnam error consectetur adipisci quidem distinctio quo. Totam, aliquam
+                                    corporis.
+                                </p>
+                            </div>
+                        </a>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card">
+                    <img src="https://images.pexels.com/photos/247502/pexels-photo-247502.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+                         class="card-img" alt="...">
+                    <div class="card-img-overlay">
+                        <a href="./bulletin_search_b.html">
+                            <div class="contect">
+                                <h5 class="card-title">成功大學附近流浪貓咪</h5>
+                                <p class="card-place">台南市東區大學路一號</p>
+                                <p class="card-date">2020/6/30</p>
+                                <p class="card-text">
+                                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Commodi
+                                    provident magnam error consectetur adipisci quidem distinctio quo. Totam, aliquam
+                                    corporis.
+                                </p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card">
+                    <img src="https://images.pexels.com/photos/86596/owl-bird-eyes-eagle-owl-86596.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+                         class="card-img" alt="...">
+                    <div class="card-img-overlay">
+                        <a href="./bulletin_search_b.html">
+                            <div class="contect">
+                                <h5 class="card-title">成功大學附近流浪貓咪</h5>
+                                <p class="card-place">台南市東區大學路一號</p>
+                                <p class="card-date">2020/6/30</p>
+                                <p class="card-text">
+                                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Commodi
+                                    provident magnam error consectetur adipisci quidem distinctio quo. Totam, aliquam
+                                    corporis.
+                                </p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card">
+                    <img src="https://images.pexels.com/photos/7001090/pexels-photo-7001090.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
+                         class="card-img" alt="...">
+                    <div class="card-img-overlay">
+                        <a href="./bulletin_search_b.html">
+                            <div class="contect">
+                                <h5 class="card-title">成功大學附近流浪貓咪</h5>
+                                <p class="card-place">台南市東區大學路一號</p>
+                                <p class="card-date">2020/6/30</p>
+                                <p class="card-text">
+                                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Commodi
+                                    provident magnam error consectetur adipisci quidem distinctio quo. Totam, aliquam
+                                    corporis.
+                                </p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card">
+                    <img src="https://images.pexels.com/photos/162318/cheetahs-cubs-two-together-162318.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+                         class="card-img" alt="...">
+                    <div class="card-img-overlay">
+                        <a href="./bulletin_search_b.html">
+                            <div class="contect">
+                                <h5 class="card-title">成功大學附近流浪貓咪</h5>
+                                <p class="card-place">台南市東區大學路一號</p>
+                                <p class="card-date">2020/6/30</p>
+                                <p class="card-text">
+                                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Commodi
+                                    provident magnam error consectetur adipisci quidem distinctio quo. Totam, aliquam
+                                    corporis.
+                                </p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card">
+                    <img src="https://images.pexels.com/photos/106686/pexels-photo-106686.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+                         class="card-img" alt="...">
+                    <div class="card-img-overlay">
+                        <a href="./bulletin_search_b.html">
+                            <div class="contect">
+                                <h5 class="card-title">成功大學附近流浪貓咪</h5>
+                                <p class="card-place">台南市東區大學路一號</p>
+                                <p class="card-date">2020/6/30</p>
+                                <p class="card-text">
+                                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Commodi
+                                    provident magnam error consectetur adipisci quidem distinctio quo. Totam, aliquam
+                                    corporis.
+                                </p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- 展示用，連接資料庫後再說 -->
+        <div>
+            <p class="text-center">
+                <a href="">1 </a>
+                <a href="">2 </a>
+                <a href="">3 </a>
+                <a href="">4 </a>
+                <a href="">5 </a>
+                <a href="">6 </a>
+            </p>
+        </div>
+    </div>
+
+</body>
+
+

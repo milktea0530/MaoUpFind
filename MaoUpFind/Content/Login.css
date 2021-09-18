@@ -1,0 +1,35 @@
+﻿
+.form-reg {
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 1px solid rgba(87, 87, 87, 0.521);
+    border-radius: 0;
+}
+
+/* .form-reg:before{
+            background-image: url(images/basic/member/member02.svg);
+        } */
+
+.form-group {
+    margin: 10px;
+}
+
+/*按鈕*/
+.save {
+    background-color: #fcdca8;
+    border: none;
+    margin: 2rem;
+}
+
+    .save:hover {
+        color: #fff;
+        background-color: #6c757d;
+    }
+
+    .save:active {
+        color: #fff;
+        background-color: #6c757d;
+        border-color: #6c757d;
+    }
+

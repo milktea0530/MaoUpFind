@@ -1,0 +1,403 @@
+﻿
+@{
+    ViewBag.Title = "會員中心";
+}
+@* 前端自動欄位驗證 *@
+<script src="~/Scripts/Jquery/jquery.validate.js"></script>
+<script src="~/Scripts/Jquery/jquery.validate.unobtrusive.js"></script>
+
+<head>
+    <!-- 縣市下拉選單 -->
+    <script src="~/Scripts/aj-address.js"></script>
+    <script>
+        /* 縣市下拉選單 */
+        $(function () {
+            $('.address-zone').ajaddress();
+        });
+
+    </script>
+
+    <link href="~/Content/Member.css" rel="stylesheet" />
+
+
+
+    <style>
+        form {
+            font-size: 1.2rem;
+        }
+
+        /*導覽與內容的分隔線*/
+        .line {
+            height: 3px;
+            background: #e3dddd;
+        }
+
+        /* placeholder(佔位符)顏色 */
+        ::placeholder {
+            /* Chrome, Firefox, Opera, Safari 10.1+ */
+            color: #bbb !important;
+            /* 有別的ＣＳＳ的優先順序比較高 不用important的話蓋不掉 */
+        }
+
+        /*導覽頁籤樣式*/
+        #tab-demo {
+            /* width: 350px;
+            height: 200px; */
+            margin: 10px;
+        }
+
+            #tab-demo > ul {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-evenly;
+                /*justify-content處理水平位置，center置中*/
+                align-items: center;
+                /*當三個BOX高度不同時，用來置中三個BOX，會從父層的中心線對齊*/
+                padding-inline-start: 0px;
+                /*取消左邊不知道哪裡來的寬度*/
+                /* display: block; */
+                margin: 0;
+                list-style: none;
+            }
+
+        .tab-title {
+            list-style: none;
+        }
+
+        #tab-demo > ul > li {
+            display: inline-block;
+            vertical-align: top;
+            font-family: '微軟正黑體';
+            margin: 0 -1px -1px 0;
+            /* border: 1px solid #BCBCBC; */
+            height: 25px;
+            line-height: 25px;
+            /* background: #cdcdcd; */
+            padding: 0 15px;
+            list-style: none;
+            box-sizing: border-box;
+        }
+
+            #tab-demo > ul > li a {
+                color: rgb(83, 83, 83);
+                text-decoration: none;
+            }
+
+            #tab-demo > ul > li.active {
+                border-bottom: 1px solid #fff;
+                background: #fff;
+            }
+
+
+            #tab-demo > ul > li a:hover {
+                font-weight: bold;
+                color: rgb(56, 53, 53);
+                text-decoration: none;
+                border-bottom: 2px solid rgba(98, 146, 209, 0.521);
+            }
+
+        .tab-inner {
+            color: #515151;
+            padding: 15px;
+        }
+
+        /*儲存按鈕*/
+        .save {
+            background-color: #FFF8ED;
+            margin: 2rem;
+        }
+
+            .save:hover {
+                color: #fff;
+                background-color: #6c757d;
+            }
+
+            .save:active {
+                color: #fff;
+                background-color: #6c757d;
+                border-color: #6c757d;
+            }
+
+        /*表格*/
+
+        /* Table Head */
+        #table-5 thead th {
+            background-color: #E6F1E3;
+            color: #515151ff;
+            border-bottom-width: 0;
+        }
+
+
+        /*按鈕*/
+        .rec_btn {
+            display: table-cell;
+        }
+
+
+        /* 表格rwd */
+        .rwd-table {
+            background: #FFF8ED;
+            overflow: hidden;
+        }
+
+            .rwd-table tr:nth-of-type(2n) {
+                background: #fdeed2;
+            }
+
+            .rwd-table th,
+            .rwd-table td {
+                margin: 0.5em 1em;
+            }
+
+        .rwd-table {
+            min-width: 100%;
+        }
+
+            .rwd-table th {
+                display: none;
+            }
+
+            .rwd-table td {
+                display: block;
+            }
+
+                .rwd-table td:before {
+                    content: attr(data-th) " : ";
+                    font-weight: bold;
+                    width: 6.5em;
+                    display: inline-block;
+                }
+
+            .rwd-table th,
+            .rwd-table td {
+                text-align: left;
+            }
+
+                .rwd-table th,
+                .rwd-table td:before {
+                    color: #515151ff;
+                    font-weight: bold;
+                }
+
+        @@media (min-width: 960px) {
+            .rwd-table td:before {
+                display: none;
+            }
+
+            .rwd-table th,
+            .rwd-table td {
+                display: table-cell;
+                padding: 0.25em 0.5em;
+            }
+
+                .rwd-table th:first-child,
+                .rwd-table td:first-child {
+                    padding-left: 0;
+                }
+
+                .rwd-table th:last-child,
+                .rwd-table td:last-child {
+                    padding-right: 0;
+                }
+
+            .rwd-table th,
+            .rwd-table td {
+                padding: 1em !important;
+            }
+        }
+
+        .btn_close {
+            color: white;
+            background-color: #007AFF;
+            font-size: 14px;
+            padding: 2px;
+        }
+
+        .btn_delete {
+            color: white;
+            background-color: #DC3545;
+            font-size: 14px;
+            padding: 2px;
+        }
+
+        .btn_search {
+            color: white;
+            background-color: #65676a;
+            font-size: 13px;
+            padding: 2px;
+            line-height: 20px;
+        }
+
+        .btn_modify {
+            color: white;
+            background-color: #17A2B8;
+            font-size: 14px;
+            padding: 2px;
+        }
+    </style>
+
+
+</head>
+
+<!--麵包屑-->
+<div>
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li>
+                @Html.ActionLink("首頁", "Index", "Home", null, new { @class = "breadcrumb-item" })
+            </li> &nbsp;/&nbsp;
+            <li>
+                @Html.ActionLink("會員中心", "Index", "MemberCenter", null, new { @class = "breadcrumb-item" })
+            </li> &nbsp;/&nbsp;
+            <li class="breadcrumb-item active" aria-current="page">紀錄查詢</li>
+        </ol>
+    </nav>
+</div>
+
+
+<div class="row justify-content-center">
+    <div class="mt-5 col-sm-12 col-md-11 col-xl-10 py-3" style="background-color: white;">
+
+        <nav id="tab-title">
+            <div class="nav nav-tabs nav-justified" id="nav-tab" role="tablist">
+
+                <button class="nav-link" id="bt1" data-bs-toggle="tab" data-bs-target="#new-tab1" type="button" role="tab" aria-selected="false">
+                    <span>
+                        <img src="~/Images/member/member01.svg" alt=""
+                             style="width:20px; height:20px; display:inline-block;">
+                        通報紀錄
+                    </span>
+                </button>
+
+                <button class="nav-link" id="bt2" data-bs-toggle="tab" data-bs-target="#new-tab2" type="button" role="tab" aria-selected="false">
+                    <span>
+                        <img src="~/Images/member/member02.svg" alt=""
+                             style="width:20px; height:20px; display:inline-block;">
+                        刊登認養紀錄
+                    </span>
+                </button>
+
+
+                <button class="nav-link" id="bt3" data-bs-toggle="tab" data-bs-target="#new-tab3" type="button" role="tab" aria-selected="false">
+                    <span>
+                        <img src="~/Images/member/member03.svg" alt=""
+                             style="width:20px; height:20px; display:inline-block;">
+                        刊登協尋紀錄
+                    </span>
+                </button>
+
+
+
+
+            </div>
+        </nav>
+        <div class="line mt-3"></div>
+        <div id="tab-body">
+            <div class="tab-content" id="nav-tabContent">
+                <div class="tab-pane fade show pt-5" id="new-tab1">
+                    @{
+
+                        Html.RenderAction("通報PV", "MemberRecord");
+
+                    }
+                </div>
+                <div class="tab-pane fade pt-5" id="new-tab2">
+                    @{
+                        Html.RenderAction("認養PV", "MemberRecord");
+                    }
+                </div>
+                <div class="tab-pane fade pt-5" id="new-tab3">
+                    @{
+                        Html.RenderAction("協尋PV", "MemberRecord");
+                    }
+
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+
+@* 結案用 *@
+<script type="text/javascript">
+
+    //送出表單時，將disabled取消已將值傳遞到後端
+    $("[type='submit']").click(function () {
+
+        $("input").prop("disabled", false);
+
+    });
+
+    //結案按鈕AJAX
+    $("button.Ajax_A").click(function (event) {
+        var a = this.id;
+
+        $.ajax({
+            url: "@Url.Action("通報結案修改", "MemberRecord")",
+            type: 'post',
+            data: {
+                通報單號: a
+            },
+            async: true,
+            success: function (data) {
+                if (data == "success")
+                    $("#" + a).empty().html("<nobr>已結案</nobr>").attr('disabled', true);
+            }
+        });
+    });
+    //結案按鈕AJAX
+    $("button.Ajax_B").click(function (event) {
+        var b = this.id;
+
+        $.ajax({
+            url: "@Url.Action("認養結案修改", "MemberRecord")",
+            type: 'post',
+            data: {
+                認養單號: b
+            },
+            async: true,
+            success: function (data) {
+                if (data == "success")
+                    $("#" + b).empty().html("<nobr>已結案</nobr>").attr('disabled', true);
+            }
+        });
+    });
+    //結案按鈕AJAX
+    $("button.Ajax_C").click(function (event) {
+        var c = this.id;
+
+        $.ajax({
+            url: "@Url.Action("協尋結案修改", "MemberRecord")",
+            type: 'post',
+            data: {
+                協尋單號: c
+            },
+            async: true,
+            success: function (data) {
+                if (data == "success")
+                    $("#" + c).empty().html("<nobr>已結案</nobr>").attr('disabled', true);
+            }
+        });
+    });
+
+
+</script>
+
+@* 切換頁籤 *@
+<script>
+    $(document).ready(function () {
+        //console.log(@ViewBag.ActionTab+"@@");
+        if (@ViewBag.ActionTab== 0 || @ViewBag.ActionTab== 1)
+            $('#bt1').trigger("click");
+        else if(@ViewBag.ActionTab == 2)
+            $('#bt2').trigger("click");
+        else
+            $('#bt3').trigger("click");
+
+    });
+
+
+</script>
+

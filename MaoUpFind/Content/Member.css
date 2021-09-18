@@ -1,0 +1,83 @@
+﻿
+#tab-title .nav {
+    border: 0;
+    font-size: 1.2rem;
+}
+
+#tab-title button {
+    border: 0;
+    margin: 16px;
+    padding: 0;
+}
+
+    #tab-title button span {
+        font-weight: bold;
+        font-size: 1.3rem;
+        white-space: nowrap;
+        font-family: '微軟正黑體';
+        padding: 2px 6px;
+        color: rgb(83, 83, 83);
+        text-decoration: none;
+        transition: color 2s;
+    }
+
+    #tab-title button:not(.active) span:hover {
+        font-size: 1.5rem;
+        color: rgb(56, 53, 53);
+        text-decoration: none;
+        border-bottom: 2px solid rgba(98, 146, 209, 0.521);
+        transition: font-size 0.1s ease-in-out;
+    }
+
+#tab-title .active span {
+    font-size: 1.8rem;
+    color: rgb(56, 53, 53);
+    text-decoration: none;
+    border-bottom: 2px solid rgba(83, 83, 83, 0.8);
+}
+
+
+
+
+/*------以上尾鰭新增------*/
+
+/*導覽與內容的分隔線*/
+.line {
+    height: 3px;
+    background: #e3dddd;
+}
+
+/* placeholder(佔位符)顏色 */
+::placeholder {
+    /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: #bbb !important;
+    /* 有別的ＣＳＳ的優先順序比較高 不用important的話蓋不掉 */
+}
+
+
+
+.tab-inner {
+    color: #515151;
+    padding: 15px;
+    /* display: flex; */
+    /* justify-content:center; */
+    /* height: 50px; */
+}
+
+/*儲存按鈕*/
+
+.save {
+    background-color: #FFF8ED;
+    margin: 2rem;
+}
+
+    .save:hover {
+        color: #fff;
+        background-color: #6c757d;
+    }
+
+    .save:active {
+        color: #fff;
+        background-color: #6c757d;
+        border-color: #6c757d;
+    }

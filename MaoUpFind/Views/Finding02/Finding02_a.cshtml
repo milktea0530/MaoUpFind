@@ -1,0 +1,277 @@
+﻿
+@{ ViewBag.Title = "Finding02_a"; }
+
+
+<head>
+
+    <title>協尋專欄</title>
+
+    <!-- 縣市下拉選單 -->
+    <script src="~/Scripts/aj-address.js"></script>
+
+    <!-- 動物下拉選單 -->
+    <script src="~/Scripts/animal-variety.js"></script>
+
+    <link rel="stylesheet" href="~/Content/Adoption02_a.css"><!--與認養樣式一樣-->
+
+    <script>
+
+        /* 縣市下拉選單 */
+        $(function () {
+            $('.address-zone').ajaddress();
+        });
+
+        /* 動物下拉選單 */
+        $(function () {
+            $('.animal-variety').animalVariety();
+        });
+    </script>
+
+
+</head>
+
+<body>
+    <!-- 這裡面放各頁面主要內容 -->
+    <div class="container min-h-100pct mt-3">
+
+        <!--麵包屑-->
+        <div>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li>
+                        @Html.ActionLink("首頁", "Index", "Home", null, new { @class = "breadcrumb-item" })
+                    </li> &nbsp;/&nbsp;
+                    <li>
+                        @Html.ActionLink("協尋專欄", "Finding02_a", "Finding02", null, new { @class = "breadcrumb-item active" })
+                    </li>
+                </ol>
+            </nav>
+        </div>
+
+        <div class="mt-3 mb-3">
+            <h3 class="mb-5" style="text-align: center; letter-spacing:8px"><img src="./images/basic/認養.svg" alt="" style="width:30px" class="me-3">查詢需協尋寵物</h3>
+
+            <form action="">
+                <div class="row align-items-center justify-content-center mb-3">
+                    <div class="col-8">
+                        <h5 style="letter-spacing:4px;">請選擇查詢條件</h5>
+                        <div class="line"></div>
+                    </div>
+                </div>
+
+                <div class="row align-items-center justify-content-center">
+
+                    <div class="col-8 col-xl-4">
+                        <div class="row animal-variety mb-3">
+                            <div class="col-12 col-md-6">
+                                <label for="animal" class="form-label">動物別</label>
+                                <select class="animal form-select">
+                                    <option value="" selected disabled>--請選擇--</option>
+                                </select>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <label for="varieties" class="form-label">動物品種</label>
+                                <select class="varieties form-select">
+                                    <option value="">--請選擇--</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="col-8 col-xl-4">
+                        <div class="row mb-3 address-zone">
+                            <div class="col-12 col-md-6">
+                                <label for="county" class="form-label">所在縣市</label>
+                                <select class="city form-select">
+                                    <option value="" selected disabled>--請選擇--</option>
+                                </select>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <label for="district" class="form-label">所在地區</label>
+                                <select class="county form-select">
+                                    <option value="">--請選擇--</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mb-5 mt-3 align-items-center justify-content-center">
+                        <div class="col-3">
+                            <div class="d-grid gap-2">
+                                <button type="submit" class="btn btn-primary bg-secondary border-0">查詢</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-6">
+                        <div class="row align-items-center justify-content-center">
+
+                            <div class="col-12 col-md-6">
+                                <p class="text-center mt-3">當前排序方式: 所有區間/日期排序(由新到舊)</p>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <div class="row align-items-center justify-content-center">
+                                    <div class="col-12 col-md-8 col-xl-auto">
+                                        <select id="" class="form-select" width="100%">
+                                            <option>日期(由新到舊)</option>
+                                            <option>日期(由舊到新)</option>
+                                            <option>觀看次數</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-12 col-xl-auto my-3">
+                                        <button class="btn btn-outline-secondary" type="button">排序</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </form>
+
+        </div>
+
+
+
+
+        <div class="row row-cols-1 row-cols-md-2 row-cols-xxl-3 justify-content-around">
+            <div class="col">
+                <div class="card">
+                    <img src="https://images.pexels.com/photos/572861/pexels-photo-572861.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+                         class="card-img" alt="...">
+
+                    <div class="card-img-overlay">
+                        <a href="@Url.Action("Finding02_b", "Finding02")">
+                            <div class="contect">
+                                <h5 class="card-title">親人虎斑貓走丟</h5>
+                                <p class="card-place">台南市安平區</p>
+                                <p class="card-date">2020/6/30</p>
+                                <p class="card-text">
+                                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Commodi
+                                    provident magnam error consectetur adipisci quidem distinctio quo. Totam, aliquam
+                                    corporis.
+                                </p>
+                            </div>
+                        </a>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card">
+                    <img src="https://images.pexels.com/photos/247502/pexels-photo-247502.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+                         class="card-img" alt="...">
+                    <div class="card-img-overlay">
+                        <a href="@Url.Action("Finding02_b", "Finding02")">
+                            <div class="contect">
+                                <h5 class="card-title">協尋奶油長毛臘腸</h5>
+                                <p class="card-place">台南市東區</p>
+                                <p class="card-date">2020/6/30</p>
+                                <p class="card-text">
+                                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Commodi
+                                    provident magnam error consectetur adipisci quidem distinctio quo. Totam, aliquam
+                                    corporis.
+                                </p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card">
+                    <img src="https://images.pexels.com/photos/86596/owl-bird-eyes-eagle-owl-86596.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+                         class="card-img" alt="...">
+                    <div class="card-img-overlay">
+                        <a href="@Url.Action("Finding02_b", "Finding02")">
+                            <div class="contect">
+                                <h5 class="card-title">寵物狗協尋</h5>
+                                <p class="card-place">台南市中西區</p>
+                                <p class="card-date">2020/6/30</p>
+                                <p class="card-text">
+                                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Commodi
+                                    provident magnam error consectetur adipisci quidem distinctio quo. Totam, aliquam
+                                    corporis.
+                                </p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card">
+                    <img src="https://images.pexels.com/photos/7001090/pexels-photo-7001090.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
+                         class="card-img" alt="...">
+                    <div class="card-img-overlay">
+                        <a href="@Url.Action("Finding02_b", "Finding02")">
+                            <div class="contect">
+                                <h5 class="card-title">懇求協尋安南區貓咪</h5>
+                                <p class="card-place">台南市安南區</p>
+                                <p class="card-date">2020/6/30</p>
+                                <p class="card-text">
+                                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Commodi
+                                    provident magnam error consectetur adipisci quidem distinctio quo. Totam, aliquam
+                                    corporis.
+                                </p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card">
+                    <img src="https://images.pexels.com/photos/162318/cheetahs-cubs-two-together-162318.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+                         class="card-img" alt="...">
+                    <div class="card-img-overlay">
+                        <a href="@Url.Action("Finding02_b", "Finding02")">
+                            <div class="contect">
+                                <h5 class="card-title">永康區貓咪走丟</h5>
+                                <p class="card-place">台南市永康區</p>
+                                <p class="card-date">2020/6/30</p>
+                                <p class="card-text">
+                                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Commodi
+                                    provident magnam error consectetur adipisci quidem distinctio quo. Totam, aliquam
+                                    corporis.
+                                </p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card">
+                    <img src="https://images.pexels.com/photos/106686/pexels-photo-106686.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+                         class="card-img" alt="...">
+                    <div class="card-img-overlay">
+                        <a href="@Url.Action("Finding02_b", "Finding02")">
+                            <div class="contect">
+                                <h5 class="card-title">尋貓啟示</h5>
+                                <p class="card-place">台南市東區</p>
+                                <p class="card-date">2020/6/30</p>
+                                <p class="card-text">
+                                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Commodi
+                                    provident magnam error consectetur adipisci quidem distinctio quo. Totam, aliquam
+                                    corporis.
+                                </p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- 展示用，連接資料庫後再說 -->
+        <div>
+            <p class="text-center">
+                <a href="">1 </a>
+                <a href="">2 </a>
+                <a href="">3 </a>
+                <a href="">4 </a>
+                <a href="">5 </a>
+                <a href="">6 </a>
+            </p>
+        </div>
+    </div>
+</body>

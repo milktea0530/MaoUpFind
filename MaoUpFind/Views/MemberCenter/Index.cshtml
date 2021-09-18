@@ -1,0 +1,120 @@
+﻿
+@{
+    ViewBag.Title = "會員中心";
+}
+@* 前端自動欄位驗證 *@
+<script src="~/Scripts/Jquery/jquery.validate.js"></script>
+<script src="~/Scripts/Jquery/jquery.validate.unobtrusive.js"></script>
+
+<head>
+    <!-- 縣市下拉選單 -->
+    <script src="~/Scripts/aj-address.js"></script>
+    <script>
+        /* 縣市下拉選單 */
+        $(function () {
+            $('.address-zone').ajaddress();
+        });
+
+    </script>
+
+    <link href="~/Content/Member.css" rel="stylesheet" />
+</head>
+
+
+<!--麵包屑-->
+<div>
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li>
+                @Html.ActionLink("首頁", "Index", "Home", null, new { @class = "breadcrumb-item" })
+            </li> &nbsp;/&nbsp;
+            <li>
+                @Html.ActionLink("會員中心", "Index", "MemberCenter", null, new { @class = "breadcrumb-item" })
+            </li> &nbsp;/&nbsp;
+            <li class="breadcrumb-item active" aria-current="page">基本資料維護</li>
+        </ol>
+    </nav>
+</div>
+
+<div class="row justify-content-center">
+    <div class="mt-5  col-sm-11 col-md-10 col-xl-8 py-3" style="background-color: white;">
+
+        <nav id="tab-title">
+            <div class="nav nav-tabs nav-justified" id="nav-tab" role="tablist">
+
+                <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#new-tab1" type="button" role="tab" aria-selected="false">
+                    <span>
+                        <img src="~/Images/member/member01.svg" alt=""
+                             style="width:20px; height:20px; display:inline-block;">
+                        基本資料維護
+                    </span>
+                </button>
+
+                <button class="nav-link" data-bs-toggle="tab" data-bs-target="#new-tab2" type="button" role="tab" aria-selected="false">
+                    <span>
+                        <img src="~/Images/member/member02.svg" alt=""
+                             style="width:20px; height:20px; display:inline-block;">
+                        變更密碼
+                    </span>
+                </button>
+
+
+                <button class="nav-link" data-bs-toggle="tab" data-bs-target="#new-tab3" type="button" role="tab" aria-selected="false">
+                    <span>
+                        <img src="~/Images/member/member03.svg" alt=""
+                             style="width:20px; height:20px; display:inline-block;">
+                        信箱管理
+                    </span>
+                </button>
+
+
+
+
+            </div>
+        </nav>
+        <div class="line mt-3"></div>
+        <div id="tab-body">
+            <div class="tab-content" id="nav-tabContent">
+                <div class="tab-pane fade show active pt-5" id="new-tab1">
+                    @{
+                        if ((int)Session["SK_LOGINED_TYPE"] == 0)
+                        {
+                            Html.RenderAction("Form1_g", "MemberCenter");
+                        }
+                        else
+                        {
+                            Html.RenderAction("Form1_h", "MemberCenter");
+                        }
+                    }
+                </div>
+                <div class="tab-pane fade pt-5" id="new-tab2">
+                    @{
+                        Html.RenderAction("Form2", "MemberCenter");
+                    }
+                </div>
+                <div class="tab-pane fade pt-5" id="new-tab3">
+                    @{
+                        Html.RenderAction("Form3", "MemberCenter");
+                    }
+
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+
+
+<script type="text/javascript">
+
+    //送出表單時，將disabled取消已將值傳遞到後端
+    $("[type='submit']").click(function () {
+
+        $("input").prop("disabled", false);
+
+    });
+
+</script>
+

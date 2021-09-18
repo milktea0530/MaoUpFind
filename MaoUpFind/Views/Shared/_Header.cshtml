@@ -1,0 +1,188 @@
+﻿
+
+<nav class="navbar navbar-expand-lg navbar-light myNavBg-0 fixed-top nav-h">
+    <div class="container mb-0 text-center">
+        <a class="navbar-brand" href="~/Home/index">
+            <img src="~/Images/svg/logo2.svg" alt="" width="67"><span>毛起來找</span>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+                <li class="nav-item dropdown mx-2">
+                    <a class="nav-link dropdown-toggle" href="#" id="" role="button" data-bs-toggle="dropdown"
+                       aria-expanded="false">
+                        <span class="br"><img src="~/Images/svg/通報.svg" alt=""></span>線上通報
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li>
+                            @Html.ActionLink("通報", "Index", "Bulletin01", null, new { @class = "dropdown-item" })
+                        </li>
+                        @*<li>
+                                @Html.ActionLink("線上求助", "Index", "Bulletin02", null, new { @class = "dropdown-item" })
+                            </li>*@
+                        <li>
+                            @Html.ActionLink("查詢專欄", "Index", "Bulletin03", null, new { @class = "dropdown-item" })
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown mx-2">
+                    <a class="nav-link dropdown-toggle" href="#" id="" role="button" data-bs-toggle="dropdown"
+                       aria-expanded="false">
+                        <span class="br"><img src="~/Images/svg/認養.svg" alt=""></span>寵物認養
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li>
+                            @Html.ActionLink("刊登認養", "Index", "Adoption01", null, new { @class = "dropdown-item" })
+                        </li>
+                        <li>
+                            @Html.ActionLink("寵物媒合", "Index", "Adoption02", null, new { @class = "dropdown-item" })
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown mx-2">
+                    <a class="nav-link dropdown-toggle" href="#" id="" role="button" data-bs-toggle="dropdown"
+                       aria-expanded="false">
+                        <span class="br"><img src="~/Images/svg/協尋.svg" alt=""></span>寵物協尋
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li>
+                            @Html.ActionLink("刊登協尋", "Index", "Finding01", null, new { @class = "dropdown-item" })
+                        </li>
+                        <li>
+                            @Html.ActionLink("協尋專欄", "Index", "Finding02", null, new { @class = "dropdown-item" })
+                        </li>
+                    </ul>
+                </li>
+
+                <!--  -->
+                <li class="nav-item dropdown mx-2">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+                       aria-expanded="false">
+                        <span class="br"><img src="~/Images/svg/會員.svg" alt=""></span>會員中心
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li>
+                            @Html.ActionLink("基本資料維護", "Index", "MemberCenter", null, new { @class = "dropdown-item" })
+                        </li>
+                        <li>
+                            @Html.ActionLink("紀錄查詢", "Index", "MemberRecord", null, new { @class = "dropdown-item" })
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="nav-item dropdown mx-2">
+                    <a class="nav-link dropdown-toggle" href="#" id="" role="button" data-bs-toggle="dropdown"
+                       aria-expanded="false">
+                        <span class="br"><img src="~/Images/svg/地圖.svg" alt=""></span>地圖
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li>
+                            @Html.ActionLink("通報地圖", "BulletinMap", "Map", null, new { @class = "dropdown-item" })
+                        </li>
+                        <li>
+                            @Html.ActionLink("認養地圖", "AdoptionMap", "Map", null, new { @class = "dropdown-item" })
+                        </li>
+                        <li>
+                            @Html.ActionLink("協尋地圖", "FindingMap", "Map", null, new { @class = "dropdown-item" })
+                        </li>
+                        <li>
+                            @Html.ActionLink("醫院地圖", "hospitalMap", "Map", null, new { @class = "dropdown-item" })
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+
+            @{
+                if (Session["SK_LOGINED_ID"] == null)
+                {
+                    <ul class="navbar-nav mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            @*<a class="nav-link" aria-current="page" href="#">會員登入</a>*@
+                            @Html.ActionLink("會員登入", "Login", "Home", null, new { @class = "nav-link" })
+                        </li>
+                        <li class="nav-item">
+                            @*<a class="nav-link" href="#">加入會員</a>*@
+                            @Html.ActionLink("加入會員", "Register", "Home", null, new { @class = "nav-link" })
+                        </li>
+                    </ul>
+                }
+                else
+                {
+                    <ul class="navbar-nav mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            @*<a class="nav-link" aria-current="page" href="#">會員登入</a>*@
+                            @Html.ActionLink($"你好 {Session["SK_LOGINED_ACCOUNT"]}", "Index", "MemberCenter", null, new { @class = "nav-link" })
+                        </li>
+                        <li class="nav-item">
+                            @*<a class="nav-link" href="#">加入會員</a>*@
+                            @Html.ActionLink("登出", "Logout", "Home", null, new { @class = "nav-link" })
+                        </li>
+                    </ul>
+                }
+            }
+
+        </div>
+    </div>
+</nav>
+<!-- 導覽列內容 END -->
+<!-- 此處是保留給導覽列的空間 -->
+<div class="nav-h"></div>
+<!-- 跑馬燈 -->
+
+<div class="container-marquee d-flex mb-3">
+    <div class="container">
+        <div class="marquee">
+            <ul class="clearfix">
+                <li>
+                    <a href="@Url.Action( "Index", "Home")">
+                        1. 歡迎光臨-毛起來找，本平台提供寵物通報、認養、與協尋功能，讓民眾可進行刊登，刊登前請詳閱須知。
+                    </a>
+                </li>
+                <li>
+                    <a href="@Url.Action( "hospitalMap", "map")">
+                        2. 本平台提供附近醫院查詢，發現街邊浪浪時可善用地圖功能查找醫院，讓浪浪能夠更快的就醫治療。
+                    </a>
+                </li>
+                <li>
+                    <a href="@Url.Action( "Index", "Adoption02")">
+                        3. 領養前請謹慎考慮，不隨意棄養。
+                    </a>
+                </li>
+                <li>
+                    <a href="@Url.Action( "PrivacyPolicy", "Footer")">
+                        4. 平台資訊來源為會員自行刊登，如有侵犯它人權益由刊登者自行負擔相關責任。
+                    </a>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+</div>
+<link href="~/Content/header.css" rel="stylesheet" />
+<script src="~/Scripts/verticalLoop.js"></script>
+
+<script>
+    /* 跑馬燈 */
+    $('.marquee').verticalLoop({
+        delay: 5000,
+        order: 'asc'
+    });
+
+    /* 導覽列淡入淡出效果 */
+    $(window).scroll(function () {
+        let scrollTop = $(this).scrollTop();
+        //let winHeight = $(window).height();
+        if (scrollTop > 60) $('.myNavBg-0').addClass("myNavBg-1");
+        else $('.myNavBg-0').removeClass("myNavBg-1");
+    });
+    $(".myNavBg-0").hover(function () {
+        $('.myNavBg-0').addClass("myNavBg-1");
+    }, function () {
+        let scrollTop = $(window).scrollTop();
+        //let winHeight = $(window).height();
+        if (scrollTop <= 60) $('.myNavBg-0').removeClass("myNavBg-1");
+    });
+</script>

@@ -1,0 +1,310 @@
+﻿@model MaoUpFind.ViewModels.VM_Bulletin01_Form
+@{
+    var FileUploaderrMsg = ViewBag.FileUploadErrorMsg;
+    ViewBag.title = "建立通報";
+}
+<link href="~/Content/popup-style.css" rel="stylesheet" />
+<link href='https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css' rel='stylesheet' />
+<link href="~/Content/Form.css" rel="stylesheet" />
+
+<body class="bulletin_background">
+    <div class="container min-h-100pct mb-5">
+        <!--麵包屑-->
+        <div>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#">首頁</a></li>
+                    <li class="breadcrumb-item"><a href="#">線上通報</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">建立通報紀錄</li>
+                </ol>
+            </nav>
+        </div>
+
+
+        @using (Html.BeginForm("Index", "Bulletin01", FormMethod.Post, new { enctype = "multipart/form-data", onsubmit = "return submitHandler()" }))
+        {
+            @Html.AntiForgeryToken()
+            <div class="container mt-5 col-md-8">
+                <h3>通報表單</h3>
+                <div class="line"></div>
+                <div class="row justify-content-center">
+                    <div class="mt-4">
+                        @* 通報標題 *@
+                        <div class="row mb-3">
+                            <div class="col-md-12">
+                                @Html.LabelFor(model => model.通報標題, htmlAttributes: new { @class = "form-label" })
+                                <span class="text-danger">*</span>
+                                @Html.ValidationMessageFor(model => model.通報標題, "", new { @class = "text-danger" })
+                                <div class="col-md-12">
+                                    @Html.EditorFor(model => model.通報標題, new { htmlAttributes = new { @class = "form-control" } })
+                                </div>
+                            </div>
+                        </div>
+                        @* 急迫性 *@
+                        <div class="row mb-3">
+                            <div class="col-md-12">
+                                @Html.LabelFor(model => model.急迫性編號, htmlAttributes: new { @class = "form-label" })
+                                <span class="text-danger">*</span>
+                                @Html.ValidationMessageFor(model => model.急迫性編號, "", new { @class = "text-danger" })
+                                @Html.DropDownListFor(model => model.急迫性編號, GetddItemData.取得急迫性(), new { @class = "form-select" })
+
+                            </div>
+                        </div>
+                        @* 會員編號 稱謂 電話 *@
+                        <div class="row mb-3">
+                            @Html.HiddenFor(m => m.會員編號)
+                            <div class="col-md-6">
+                                @Html.LabelFor(model => model.會員暱稱, htmlAttributes: new { @class = "form-label" })
+                                <span class="text-danger">*</span>
+                                @Html.ValidationMessageFor(model => model.會員暱稱, "", new { @class = "text-danger" })
+                                @Html.TextBoxFor(model => model.會員暱稱, "", new { @class = "form-control", placeholder = "請輸入您的名字或稱呼" })
+                            </div>
+                            <div class="col-md-6 mt-3 mt-md-0">
+                                @Html.LabelFor(model => model.會員電話, htmlAttributes: new { @class = "form-label" })
+                                <span class="text-danger">*</span>
+                                @Html.ValidationMessageFor(model => model.會員電話, "", new { @class = "text-danger" })
+                                @Html.TextBoxFor(model => model.會員電話, "", new { @class = "form-control", placeholder = "請輸入您的電話號碼" })
+                            </div>
+                        </div>
+                        @* 通報時間 *@
+                        @*<div class="row mb-3">
+                                <div class="col-md-12">
+                                    @Html.LabelFor(model => model.通報時間, htmlAttributes: new { @class = "form-label" })
+                                    <span class="field_Req">*</span>
+                                    @Html.EditorFor(model => model.通報時間, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.通報時間, "", new { @class = "text-danger" })
+                                </div>
+                            </div>*@
+                        @* 縣市區域 *@
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                @Html.LabelFor(model => model.通報地點_市, htmlAttributes: new { @class = "form-label" })
+                                <span class="text-danger">*</span>
+                                @Html.ValidationMessageFor(model => model.通報地點_市, "", new { @class = "text-danger" })
+                                @Html.DropDownListFor(model => model.通報地點_市, GetddItemData.取得城市(), new { @class = "form-select", onChange = "city_ChangeHandler()" })
+
+                            </div>
+                            <div class="col-md-6 mt-3 mt-md-0">
+                                @Html.LabelFor(model => model.通報地點_區, htmlAttributes: new { @class = "form-label" })
+                                <span class="text-danger">*</span>
+                                @Html.ValidationMessageFor(model => model.通報地點_區, "", new { @class = "text-danger" })
+                                <div id="area">
+                                </div>
+                                @Html.Hidden("saveArea", Model.通報地點_區)
+                            </div>
+                        </div>
+                        @* 完整地點*@
+                        <div class="row mb-3">
+                            <div class="col-md-12">
+                                @Html.LabelFor(model => model.發生地點_全, htmlAttributes: new { @class = "form-label" })
+                                <span class="text-danger">*</span>
+                                @Html.ValidationMessageFor(model => model.發生地點_全, "", new { @class = "text-danger" })
+                                @Html.EditorFor(model => model.發生地點_全, new { htmlAttributes = new { id = "FullAddress", @class = "form-control", placeholder = "請輸入地址及地標，如：大學路1號（7-11前）" } })
+                                <input type="button" class="btn btn-success" onclick="GetPos()" value="定位" style="color:white" />
+                            </div>
+                        </div>
+                        @* 狀況概述*@
+                        <div class="row mb-3">
+                            <div class="col-md-12">
+                                @Html.LabelFor(model => model.狀況概述, htmlAttributes: new { @class = "form-label" })
+                                @Html.TextArea("狀況概述", new
+                                {
+                                    rows = "10",
+                                    @class = "form-control",
+                                    placeholder = "請概述目前的狀況，如受傷情況"
+                                })
+                            </div>
+                        </div>
+                        @* 附件 *@
+                        <div class="row mb-3">
+                            <div class="col-md-12">
+                                @Html.Label("現場照片(可上傳三張)", htmlAttributes: new { @class = "form-label" })
+                                <div class="row d-flex justify-content-start align-items-center">
+                                    <div class="d-flex flex-column col-sm-12 col-xl-4 imgUp">
+                                        <div class="imagePreview"></div>
+                                        <label class="btn btn-dark">
+                                            Upload<input type="file" name="photo" class="uploadFile img" value="Upload Photo" accept="image/png, image/jpeg, image/gif, image/jpg" style="width: 0px;height: 0px;overflow: hidden;">
+                                        </label>
+                                    </div><!-- col-2 -->
+                                    <i class="fa fa-plus imgAdd"></i>
+                                </div><!-- row -->
+                            </div>
+                        </div>
+                        @{
+                            if (FileUploaderrMsg != "")
+                            {
+                                <p class="text-danger">@FileUploaderrMsg</p>
+                            }
+                        }
+                        @* 同意 *@
+                        <div class="row mb-3">
+                            <div class="col-md-12">
+                                <input type="checkbox"
+                                       id="open_modal"
+                                       class="form-check-input"
+                                       data-bs-toggle="modal"
+                                       data-bs-target="#exampleModal" />
+                                <label for="open_modal">我已經詳細閱讀並且同意通報須知</label>
+                                @Html.Partial("_modal")
+                            </div>
+                        </div>
+                        @* 送出表單按鈕 *@
+                        <div class="row">
+                            <div class="col-mb-12">
+                                <div class="d-grid gap-2">
+                                    <button class="btn btn-outline-secondary" type="submit">送 出 通 報</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</body>
+@*<script src="~/Scripts/Jquery/jquery.validate.unobtrusive.min.js"></script>*@
+<script src="~/Scripts/Jquery/jquery.validate.min.js"></script>
+<script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDHcjIqTTgLpdXg_kfAn_p2V16uK_8D6e0&callback=initMap">
+</script>
+<script>
+    // 送出前判斷
+    function submitHandler() {
+        var checked = $('#open_modal').prop('checked');
+        if (!checked) {
+            alert("請勾選同意!");
+            return false;
+        }
+        return true;
+    }
+    // 初始化API
+    function initMap() {
+
+    }
+    // 取得經緯度,轉成地址,設定下拉式選項
+    function showLocation(position) {
+        var [lat, lng] = [
+            position.coords.latitude,
+            position.coords.longitude
+        ];
+        var geocoder = new google.maps.Geocoder();
+        var cord = new google.maps.LatLng(lat, lng);
+
+        geocoder.geocode({ 'latLng': cord }, function (results, status) {
+            if (status === google.maps.GeocoderStatus.OK) {
+                if (results) {
+                    console.log(results[0]);
+                    // 設定完整路徑
+                    $("#FullAddress").val(results[0].formatted_address);
+                    // 設定下拉資料
+                    console.log(results[0].address_components[3].long_name);
+                    console.log(results[0].address_components[4].long_name);
+                    var p_area = results[0].address_components[3].long_name;
+                    var p_city = results[0].address_components[4].long_name;
+                    var checkStatus = false;
+                    // 找到城市的下拉式選項中符合定位的城市
+                    var selectorCity = document.getElementsByName('通報地點_市');
+                    for (var i = 0; i < selectorCity[0].options.length; i++) {
+                        // console.log(selectorCity[0].options[i].text);
+                        if (selectorCity[0].options[i].text == p_city) {
+                            selectorCity[0].options[i].selected = true;
+                            checkStatus = true;
+                        }
+                    }
+                    // 如果沒出現問題的話繼續執行
+                    if (checkStatus) {
+                        // 呼叫改變區的下拉選項資料
+                        city_ChangeHandler();
+                        // 找到地區的下拉式選項中符合定位的地區
+                        var selectorArea = document.getElementsByName('通報地點_區');
+                        for (var i = 0; i < selectorArea[0].options.length; i++) {
+                            console.log(selectorArea[0].options[i].text);
+                            if (selectorArea[0].options[i].text == p_area) {
+                                selectorArea[0].options[i].selected = true;
+                            }
+                        }
+                    }
+                }
+            } else {
+                alert("Reverse Geocoding failed because: " + status);
+            }
+        });
+    }
+    // 判斷是否使用定位
+    function GetPos() {
+        var conf = confirm('要允許毛起來找取用您的位置嗎?');
+        if (!conf) {
+            return false;
+        }
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(showLocation);
+        } else {
+            alert("請呼叫GPS定位支援");
+        }
+    }
+    // 下拉式選項的設定
+    ;(function () {
+        city_ChangeHandler();
+    })()
+    function city_ChangeHandler() {
+        var city = $("select[name='通報地點_市']").val();
+        showAreaDropDownList(city);
+    }
+    function showAreaDropDownList(city) {
+        $.ajax({
+            url: "@Url.Action("_AreaDropDownList", "Template")",
+            type: 'get',
+            data: {
+                city: city,
+                title: '通報地點_區',
+                area: $("#saveArea").val(),
+            },
+            async: false,
+            success: function (data) {
+                $('div #area').empty().html(data);
+            }
+        })
+    }
+    // 同意畫面
+    $('#open_modal').change(function () {
+        if (!$("#open_modal").is(":checked")) {
+            $("#open_modal").prop("checked", true);
+        }
+    });
+    // 附件相關
+    $(".imgAdd").click(function () {
+        var count = $('.imagePreview').length;
+        if (count >= 2) $('.imgAdd').hide();
+        $(this).closest(".row").find('.imgAdd').
+            before(`
+                 <div class="d-flex flex-column col-sm-12 col-xl-4 imgUp">
+                    <div class="imagePreview"></div>
+                    <label class="btn btn-dark">Upload
+                        <input type="file" name="photo" class="uploadFile img" value="Upload Photo" accept="image/png, image/jpeg, image/gif, image/jpg" style="width:0px;height:0px;overflow:hidden;">
+                    </label>
+                    <i class="fa fa-times del"></i>
+                </div>`
+            );
+    });
+    $(document).on("click", "i.del", function () {
+        $(this).parent().remove();
+        $('.imgAdd').show();
+    });
+    $(function () {
+        $(document).on("change", ".uploadFile", function () {
+            var uploadFile = $(this);
+            var files = !!this.files ? this.files : [];
+            if (!files.length || !window.FileReader) return; // no file selected, or no FileReader support
+
+            if (/^image/.test(files[0].type)) { // only image file
+                var reader = new FileReader(); // instance of the FileReader
+                reader.readAsDataURL(files[0]); // read the local file
+
+                reader.onloadend = function () { // set image data as background of div
+                    //alert(uploadFile.closest(".upimage").find('.imagePreview').length);
+                    uploadFile.closest(".imgUp").find('.imagePreview').css("background-image", "url(" + this.result + ")");
+                }
+            }
+
+        });
+    });
+</script>

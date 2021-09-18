@@ -1,0 +1,6 @@
+﻿@{
+    int animal = ViewBag.Animal;
+    string title = ViewBag.Title;
+}
+@Html.Label("品種", htmlAttributes: new { @class = "form-label" })
+@Html.DropDownList(title, GetddItemData.取得動物品種(animal), new { @class = "form-select" })

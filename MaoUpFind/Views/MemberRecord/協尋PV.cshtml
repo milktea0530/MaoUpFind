@@ -1,0 +1,117 @@
+﻿@model IEnumerable<MaoUpFind.Models.刊登協尋>
+
+@*@{
+        ViewBag.Title = "Test";
+    }*@
+
+<!--通報紀錄-->
+<div id="tab01" class="tab-inner row justify-content-center">
+    <div class="row mb-3 mt-3">
+        @Html.ActionLink("✚刊登協尋", "Index", "Finding01", new { }, new { @class = "btn mb-3", style = "color: white;background-color: #28A745;width: 96px;height: 35px; font-size: 14px;" })
+
+        @*<button class="btn mb-3"
+                    style="color: white;background-color: #28A745;width: 96px;height: 35px; font-size: 14px;">
+                ✚建立通報
+            </button>*@
+        <table class="rwd-table" id="table-5">
+
+            <thead>
+                <tr>
+                    <th>協尋單號</th>
+                    <th>寵物資訊</th>
+                    <th>協尋狀態</th>
+                    <th>走失時間</th>
+                    <th>走失地點</th>
+                    <th><nobr>結案</nobr></th>
+                    <th><nobr>查詢專欄</nobr></th>
+                    <th><nobr>修改</nobr></th>
+                    <th><nobr>刪除</nobr></th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    string 刪除C = "deleteC_" + item.協尋單號;
+
+                    <tr>
+
+                        <td data-th="協尋單號">@Html.DisplayFor(modelItem => item.協尋單號)</td>
+                        <td data-th="寵物資訊">@Html.DisplayFor(modelItem => item.協尋標題)</td>
+
+                        @{
+                            if (item.協尋狀態 == "0")
+                            {
+                                @*<button class="btn btn_close"><nobr>未協尋</nobr></button>*@
+                                <td data-th="協尋狀態">未協尋</td>
+                            }
+                            else if (item.協尋狀態 == "1")
+                            {
+                                @*<button class="btn btn_close" disabled><nobr>已協尋</nobr></button>*@
+                                <td data-th="協尋狀態">已協尋</td>
+
+                            }
+                        }
+
+                        <td data-th="走失時間">@Html.DisplayFor(modelItem => item.走失時間)</td>
+                        <td data-th="走失地點">@Html.DisplayFor(modelItem => item.走失地點_全)</td>
+                        <td>
+                            @{
+                                if (item.是否結案 == "0")
+                                {
+                                    <button class="btn btn_close Ajax_C" id="@item.協尋單號"><nobr>☑結案</nobr></button>
+
+                                }
+                                else
+                                {
+                                    <button class="btn btn_close" disabled><nobr>已結案</nobr></button>
+                                }
+                            }
+                        </td>
+                        <td data-th="查詢專欄">
+                            <nobr>@Html.ActionLink("⍈查詢專欄", "detailView", "Finding02", new { number = @item.協尋單號 }, new { @class = "btn btn_search" })</nobr>
+                        </td>
+                        <td data-th="修改">
+                            @*<button class="btn btn_modify"><nobr>🖎修改</nobr></button>*@
+                            <nobr>@Html.ActionLink("🖎修改", "協尋資訊修改", "MemberRecord", new { number = @item.協尋單號 }, new { @class = "btn btn_modify" })</nobr>
+                        </td>
+                        <td data-th="刪除">
+                            @*<button class="btn btn_delete"><nobr>x刪除</nobr></button>*@
+                            <nobr>
+                                <button type="button" class="btn btn_delete" data-bs-toggle="modal" data-bs-target="#@刪除C">
+                                    x刪除
+                                </button>
+                            </nobr>
+                            @*<nobr>@Html.ActionLink("x刪除", "協尋PV_Delete", "MemberRecord", new { number = @item.協尋單號 }, new { @class = "btn btn_delete", onclick = "return confirm('確定要刪除嗎？');" })</nobr>*@
+                        </td>
+                    </tr>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="@刪除C" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">刪除確認</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body text-center">
+                                    你要刪除 @item.協尋標題 嗎?
+                                </div>
+                                <div class="modal-footer">
+                                    <a type="button" class="btn btn-danger" href=@Url.Action("協尋PV_Delete","MemberRecord",new{ number = @item.協尋單號 })>確定刪除</a>
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </tbody>
+        </table>
+
+
+    </div>
+</div>
+
+
+

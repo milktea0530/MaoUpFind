@@ -1,0 +1,1160 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="MaoUpFindModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="一般會員資料">
+          <Key>
+            <PropertyRef Name="編號" />
+          </Key>
+          <Property Name="編號" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="會員編號" Type="int" />
+          <Property Name="會員名字" Type="nvarchar" MaxLength="30" />
+          <Property Name="會員暱稱" Type="nvarchar" MaxLength="30" />
+          <Property Name="會員電話" Type="varchar" MaxLength="20" />
+          <Property Name="會員信箱" Type="nvarchar" MaxLength="50" />
+          <Property Name="公開聯絡" Type="varchar" MaxLength="1" />
+          <Property Name="聯絡地區_市" Type="int" />
+          <Property Name="聯絡地區_區" Type="int" />
+          <Property Name="聯絡時段" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="刊登協尋">
+          <Key>
+            <PropertyRef Name="協尋編號" />
+          </Key>
+          <Property Name="協尋編號" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="協尋單號" Type="varchar" MaxLength="30" />
+          <Property Name="協尋標題" Type="nvarchar" MaxLength="30" />
+          <Property Name="寵物編號" Type="int" />
+          <Property Name="協尋狀態" Type="varchar" MaxLength="1" />
+          <Property Name="會員編號" Type="int" />
+          <Property Name="會員暱稱" Type="nvarchar" MaxLength="30" />
+          <Property Name="會員電話" Type="varchar" MaxLength="20" />
+          <Property Name="走失地點_市" Type="int" />
+          <Property Name="走失地點_區" Type="int" />
+          <Property Name="走失地點_全" Type="nvarchar" MaxLength="100" />
+          <Property Name="走失時間" Type="datetime" />
+          <Property Name="備註" Type="nvarchar" MaxLength="150" />
+          <Property Name="是否結案" Type="varchar" MaxLength="1" />
+          <Property Name="建立時間" Type="datetime" />
+          <Property Name="更新時間" Type="datetime" />
+        </EntityType>
+        <EntityType Name="刊登認養">
+          <Key>
+            <PropertyRef Name="認養編號" />
+          </Key>
+          <Property Name="認養編號" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="認養單號" Type="varchar" MaxLength="30" />
+          <Property Name="認養標題" Type="nvarchar" MaxLength="30" />
+          <Property Name="寵物編號" Type="int" />
+          <Property Name="認養狀態" Type="varchar" MaxLength="1" />
+          <Property Name="會員編號" Type="int" />
+          <Property Name="會員暱稱" Type="nvarchar" MaxLength="30" />
+          <Property Name="會員電話" Type="varchar" MaxLength="20" />
+          <Property Name="寵物所在地點_市" Type="int" />
+          <Property Name="寵物所在地點_區" Type="int" />
+          <Property Name="寵物所在地點_全" Type="nvarchar" MaxLength="100" />
+          <Property Name="刊登原因" Type="nvarchar" MaxLength="500" />
+          <Property Name="備註" Type="nvarchar" MaxLength="150" />
+          <Property Name="結束時間" Type="datetime" />
+          <Property Name="是否結案" Type="varchar" MaxLength="1" />
+          <Property Name="建立時間" Type="datetime" />
+          <Property Name="更新時間" Type="datetime" />
+        </EntityType>
+        <EntityType Name="地區">
+          <Key>
+            <PropertyRef Name="地區編號" />
+          </Key>
+          <Property Name="地區編號" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="城市編號" Type="int" />
+          <Property Name="地區名稱" Type="nvarchar" MaxLength="30" />
+          <Property Name="備註" Type="nvarchar" MaxLength="50" />
+          <Property Name="是否啟用" Type="varchar" MaxLength="1" />
+        </EntityType>
+        <EntityType Name="城市">
+          <Key>
+            <PropertyRef Name="城市編號" />
+          </Key>
+          <Property Name="城市編號" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="城市名稱" Type="nvarchar" MaxLength="30" />
+          <Property Name="備註" Type="nvarchar" MaxLength="50" />
+          <Property Name="是否啟用" Type="varchar" MaxLength="1" />
+        </EntityType>
+        <EntityType Name="急迫性">
+          <Key>
+            <PropertyRef Name="急迫性編號" />
+          </Key>
+          <Property Name="急迫性編號" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="急迫性名稱" Type="nvarchar" MaxLength="30" />
+          <Property Name="備註" Type="nvarchar" MaxLength="50" />
+          <Property Name="是否啟用" Type="varchar" MaxLength="1" />
+          <Property Name="排序" Type="int" />
+        </EntityType>
+        <EntityType Name="按讚資料">
+          <Key>
+            <PropertyRef Name="按讚編號" />
+          </Key>
+          <Property Name="按讚編號" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="留言編號" Type="int" />
+          <Property Name="按讚會員編號" Type="int" />
+          <Property Name="按讚時間" Type="datetime" />
+        </EntityType>
+        <EntityType Name="留言板">
+          <Key>
+            <PropertyRef Name="留言編號" />
+          </Key>
+          <Property Name="留言編號" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="來源編號" Type="int" />
+          <Property Name="來源單號" Type="varchar" MaxLength="30" />
+          <Property Name="會員編號" Type="int" />
+          <Property Name="留言內容" Type="nvarchar" MaxLength="500" />
+          <Property Name="留言日期" Type="datetime" />
+          <Property Name="按讚數" Type="int" />
+          <Property Name="是否公開" Type="varchar" MaxLength="1" />
+          <Property Name="是否被檢舉" Type="int" />
+        </EntityType>
+        <EntityType Name="動物別">
+          <Key>
+            <PropertyRef Name="動物別編號" />
+          </Key>
+          <Property Name="動物別編號" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="動物別名稱" Type="nvarchar" MaxLength="50" />
+          <Property Name="備註" Type="nvarchar" MaxLength="100" />
+          <Property Name="是否啟用" Type="varchar" MaxLength="1" />
+        </EntityType>
+        <EntityType Name="動物品種">
+          <Key>
+            <PropertyRef Name="品種編號" />
+          </Key>
+          <Property Name="品種編號" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="動物別編號" Type="int" Nullable="false" />
+          <Property Name="品種名稱" Type="nvarchar" MaxLength="50" />
+          <Property Name="備註" Type="nvarchar" MaxLength="100" />
+          <Property Name="是否啟用" Type="varchar" MaxLength="1" />
+        </EntityType>
+        <EntityType Name="帳號資料">
+          <Key>
+            <PropertyRef Name="會員編號" />
+          </Key>
+          <Property Name="會員編號" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="會員種類" Type="int" />
+          <Property Name="會員帳號" Type="varchar" MaxLength="30" />
+          <Property Name="會員密碼" Type="varchar" MaxLength="30" />
+          <Property Name="帳號開通" Type="varchar" MaxLength="1" />
+          <Property Name="收到通知" Type="varchar" MaxLength="1" />
+          <Property Name="違規次數" Type="int" />
+          <Property Name="建立時間" Type="datetime" />
+        </EntityType>
+        <EntityType Name="通報資料">
+          <Key>
+            <PropertyRef Name="通報編號" />
+          </Key>
+          <Property Name="通報編號" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="通報單號" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="會員編號" Type="int" />
+          <Property Name="會員暱稱" Type="nvarchar" MaxLength="30" />
+          <Property Name="會員電話" Type="varchar" MaxLength="20" />
+          <Property Name="通報標題" Type="nvarchar" MaxLength="30" />
+          <Property Name="狀況概述" Type="nvarchar" MaxLength="500" />
+          <Property Name="通報時間" Type="datetime" />
+          <Property Name="通報地點_市" Type="int" />
+          <Property Name="通報地點_區" Type="int" />
+          <Property Name="發生地點_全" Type="nvarchar" MaxLength="100" />
+          <Property Name="急迫性編號" Type="int" />
+          <Property Name="附件一" Type="nvarchar" MaxLength="500" />
+          <Property Name="附件二" Type="nvarchar" MaxLength="500" />
+          <Property Name="附件三" Type="nvarchar" MaxLength="500" />
+          <Property Name="是否結案" Type="varchar" MaxLength="1" />
+          <Property Name="建立時間" Type="datetime" />
+          <Property Name="更新時間" Type="datetime" />
+        </EntityType>
+        <EntityType Name="會員違規紀錄">
+          <Key>
+            <PropertyRef Name="違規紀錄編號" />
+          </Key>
+          <Property Name="違規紀錄編號" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="留言編號" Type="int" />
+          <Property Name="違規行為編號" Type="int" />
+          <Property Name="違規時間" Type="datetime" />
+          <Property Name="懲罰結束時間" Type="datetime" />
+          <Property Name="備註" Type="nvarchar" MaxLength="100" />
+          <Property Name="是否成立" Type="varchar" MaxLength="1" />
+        </EntityType>
+        <EntityType Name="違規行為">
+          <Key>
+            <PropertyRef Name="違規行為編號" />
+          </Key>
+          <Property Name="違規行為編號" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="違規行為名稱" Type="nvarchar" MaxLength="100" />
+          <Property Name="懲罰天數" Type="int" />
+          <Property Name="備註" Type="nvarchar" MaxLength="100" />
+          <Property Name="是否啟用" Type="varchar" MaxLength="1" />
+        </EntityType>
+        <EntityType Name="醫院會員資料">
+          <Key>
+            <PropertyRef Name="編號" />
+          </Key>
+          <Property Name="編號" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="會員編號" Type="int" />
+          <Property Name="醫院名字" Type="nvarchar" MaxLength="30" />
+          <Property Name="醫院電話" Type="varchar" MaxLength="20" />
+          <Property Name="醫院信箱" Type="nvarchar" MaxLength="50" />
+          <Property Name="聯絡人" Type="nvarchar" MaxLength="50" />
+          <Property Name="所在地點_市" Type="int" />
+          <Property Name="所在地點_區" Type="int" />
+          <Property Name="所在地點_全" Type="nvarchar" MaxLength="100" />
+          <Property Name="備註" Type="nvarchar" MaxLength="100" />
+          <Property Name="營業時間" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="寵物資料">
+          <Key>
+            <PropertyRef Name="寵物編號" />
+          </Key>
+          <Property Name="寵物編號" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="動物別編號" Type="int" />
+          <Property Name="品種編號" Type="int" />
+          <Property Name="晶片號碼" Type="varchar" MaxLength="50" />
+          <Property Name="寵物稱呼" Type="nvarchar" MaxLength="50" />
+          <Property Name="寵物年紀" Type="nvarchar" MaxLength="50" />
+          <Property Name="寵物性別" Type="varchar" MaxLength="10" />
+          <Property Name="健康狀況" Type="nvarchar" MaxLength="500" />
+          <Property Name="寵物資訊備註" Type="nvarchar" MaxLength="500" />
+          <Property Name="附件一" Type="nvarchar" MaxLength="500" />
+          <Property Name="附件二" Type="nvarchar" MaxLength="500" />
+          <Property Name="附件三" Type="nvarchar" MaxLength="500" />
+          <Property Name="建立時間" Type="datetime" />
+          <Property Name="更新時間" Type="datetime" />
+        </EntityType>
+        <!--產生期間發現錯誤:
+警告 6002: 資料表/檢視 'MaoUpFind.dbo.協尋檢視表' 未定義主索引鍵。已推斷此索引鍵，並將定義建立成唯讀的資料表/檢視。-->
+        <EntityType Name="協尋檢視表">
+          <Key>
+            <PropertyRef Name="協尋編號" />
+          </Key>
+          <Property Name="協尋編號" Type="int" Nullable="false" />
+          <Property Name="協尋單號" Type="varchar" MaxLength="30" />
+          <Property Name="協尋標題" Type="nvarchar" MaxLength="30" />
+          <Property Name="寵物編號" Type="int" />
+          <Property Name="協尋狀態" Type="varchar" MaxLength="1" />
+          <Property Name="會員編號" Type="int" />
+          <Property Name="會員暱稱" Type="nvarchar" MaxLength="30" />
+          <Property Name="會員電話" Type="varchar" MaxLength="20" />
+          <Property Name="走失地點_市" Type="int" />
+          <Property Name="走失地點_區" Type="int" />
+          <Property Name="走失地點_全" Type="nvarchar" MaxLength="100" />
+          <Property Name="走失時間" Type="datetime" />
+          <Property Name="備註" Type="nvarchar" MaxLength="150" />
+          <Property Name="是否結案" Type="varchar" MaxLength="1" />
+          <Property Name="建立時間" Type="datetime" />
+          <Property Name="更新時間" Type="datetime" />
+          <Property Name="Expr1" Type="int" />
+          <Property Name="動物別編號" Type="int" />
+          <Property Name="品種編號" Type="int" />
+          <Property Name="晶片號碼" Type="varchar" MaxLength="50" />
+          <Property Name="寵物稱呼" Type="nvarchar" MaxLength="50" />
+          <Property Name="寵物年紀" Type="nvarchar" MaxLength="50" />
+          <Property Name="寵物性別" Type="varchar" MaxLength="10" />
+          <Property Name="健康狀況" Type="nvarchar" MaxLength="500" />
+          <Property Name="寵物資訊備註" Type="nvarchar" MaxLength="500" />
+          <Property Name="附件一" Type="nvarchar" MaxLength="500" />
+          <Property Name="附件二" Type="nvarchar" MaxLength="500" />
+          <Property Name="附件三" Type="nvarchar" MaxLength="500" />
+          <Property Name="Expr2" Type="datetime" />
+          <Property Name="Expr3" Type="datetime" />
+          <Property Name="動物別名稱" Type="nvarchar" MaxLength="50" />
+          <Property Name="品種名稱" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <!--產生期間發現錯誤:
+警告 6002: 資料表/檢視 'MaoUpFind.dbo.會員檢視表' 未定義主索引鍵。已推斷此索引鍵，並將定義建立成唯讀的資料表/檢視。-->
+        <EntityType Name="會員檢視表">
+          <Key>
+            <PropertyRef Name="會員編號" />
+          </Key>
+          <Property Name="會員編號" Type="int" Nullable="false" />
+          <Property Name="會員帳號" Type="varchar" MaxLength="30" />
+          <Property Name="會員暱稱" Type="nvarchar" MaxLength="30" />
+          <Property Name="會員信箱" Type="nvarchar" MaxLength="50" />
+          <Property Name="收到通知" Type="varchar" MaxLength="1" />
+          <Property Name="市" Type="int" />
+          <Property Name="區" Type="int" />
+        </EntityType>
+        <!--產生期間發現錯誤:
+警告 6002: 資料表/檢視 'MaoUpFind.dbo.認養檢視表' 未定義主索引鍵。已推斷此索引鍵，並將定義建立成唯讀的資料表/檢視。-->
+        <EntityType Name="認養檢視表">
+          <Key>
+            <PropertyRef Name="認養編號" />
+          </Key>
+          <Property Name="認養編號" Type="int" Nullable="false" />
+          <Property Name="認養單號" Type="varchar" MaxLength="30" />
+          <Property Name="認養標題" Type="nvarchar" MaxLength="30" />
+          <Property Name="寵物編號" Type="int" />
+          <Property Name="認養狀態" Type="varchar" MaxLength="1" />
+          <Property Name="會員編號" Type="int" />
+          <Property Name="會員暱稱" Type="nvarchar" MaxLength="30" />
+          <Property Name="會員電話" Type="varchar" MaxLength="20" />
+          <Property Name="寵物所在地點_市" Type="int" />
+          <Property Name="寵物所在地點_區" Type="int" />
+          <Property Name="寵物所在地點_全" Type="nvarchar" MaxLength="100" />
+          <Property Name="刊登原因" Type="nvarchar" MaxLength="500" />
+          <Property Name="備註" Type="nvarchar" MaxLength="150" />
+          <Property Name="結束時間" Type="datetime" />
+          <Property Name="是否結案" Type="varchar" MaxLength="1" />
+          <Property Name="建立時間" Type="datetime" />
+          <Property Name="更新時間" Type="datetime" />
+          <Property Name="Expr1" Type="int" />
+          <Property Name="動物別編號" Type="int" />
+          <Property Name="品種編號" Type="int" />
+          <Property Name="晶片號碼" Type="varchar" MaxLength="50" />
+          <Property Name="寵物稱呼" Type="nvarchar" MaxLength="50" />
+          <Property Name="寵物年紀" Type="nvarchar" MaxLength="50" />
+          <Property Name="寵物性別" Type="varchar" MaxLength="10" />
+          <Property Name="健康狀況" Type="nvarchar" MaxLength="500" />
+          <Property Name="寵物資訊備註" Type="nvarchar" MaxLength="500" />
+          <Property Name="附件一" Type="nvarchar" MaxLength="500" />
+          <Property Name="附件二" Type="nvarchar" MaxLength="500" />
+          <Property Name="附件三" Type="nvarchar" MaxLength="500" />
+          <Property Name="Expr2" Type="datetime" />
+          <Property Name="Expr3" Type="datetime" />
+          <Property Name="動物別名稱" Type="nvarchar" MaxLength="50" />
+          <Property Name="品種名稱" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <Function Name="usp_GetMessageBoardContent" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="來源編號" Type="int" Mode="In" />
+          <Parameter Name="來源單號" Type="varchar" Mode="In" />
+          <Parameter Name="按讚會員編號" Type="int" Mode="In" />
+        </Function>
+        <EntityContainer Name="MaoUpFindModelStoreContainer">
+          <EntitySet Name="一般會員資料" EntityType="Self.一般會員資料" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="刊登協尋" EntityType="Self.刊登協尋" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="刊登認養" EntityType="Self.刊登認養" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="地區" EntityType="Self.地區" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="城市" EntityType="Self.城市" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="急迫性" EntityType="Self.急迫性" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="按讚資料" EntityType="Self.按讚資料" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="留言板" EntityType="Self.留言板" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="動物別" EntityType="Self.動物別" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="動物品種" EntityType="Self.動物品種" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="帳號資料" EntityType="Self.帳號資料" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="通報資料" EntityType="Self.通報資料" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="會員違規紀錄" EntityType="Self.會員違規紀錄" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="違規行為" EntityType="Self.違規行為" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="醫院會員資料" EntityType="Self.醫院會員資料" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="寵物資料" EntityType="Self.寵物資料" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="協尋檢視表" EntityType="Self.協尋檢視表" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [協尋檢視表].[協尋編號] AS [協尋編號], 
+    [協尋檢視表].[協尋單號] AS [協尋單號], 
+    [協尋檢視表].[協尋標題] AS [協尋標題], 
+    [協尋檢視表].[寵物編號] AS [寵物編號], 
+    [協尋檢視表].[協尋狀態] AS [協尋狀態], 
+    [協尋檢視表].[會員編號] AS [會員編號], 
+    [協尋檢視表].[會員暱稱] AS [會員暱稱], 
+    [協尋檢視表].[會員電話] AS [會員電話], 
+    [協尋檢視表].[走失地點_市] AS [走失地點_市], 
+    [協尋檢視表].[走失地點_區] AS [走失地點_區], 
+    [協尋檢視表].[走失地點_全] AS [走失地點_全], 
+    [協尋檢視表].[走失時間] AS [走失時間], 
+    [協尋檢視表].[備註] AS [備註], 
+    [協尋檢視表].[是否結案] AS [是否結案], 
+    [協尋檢視表].[建立時間] AS [建立時間], 
+    [協尋檢視表].[更新時間] AS [更新時間], 
+    [協尋檢視表].[Expr1] AS [Expr1], 
+    [協尋檢視表].[動物別編號] AS [動物別編號], 
+    [協尋檢視表].[品種編號] AS [品種編號], 
+    [協尋檢視表].[晶片號碼] AS [晶片號碼], 
+    [協尋檢視表].[寵物稱呼] AS [寵物稱呼], 
+    [協尋檢視表].[寵物年紀] AS [寵物年紀], 
+    [協尋檢視表].[寵物性別] AS [寵物性別], 
+    [協尋檢視表].[健康狀況] AS [健康狀況], 
+    [協尋檢視表].[寵物資訊備註] AS [寵物資訊備註], 
+    [協尋檢視表].[附件一] AS [附件一], 
+    [協尋檢視表].[附件二] AS [附件二], 
+    [協尋檢視表].[附件三] AS [附件三], 
+    [協尋檢視表].[Expr2] AS [Expr2], 
+    [協尋檢視表].[Expr3] AS [Expr3], 
+    [協尋檢視表].[動物別名稱] AS [動物別名稱], 
+    [協尋檢視表].[品種名稱] AS [品種名稱]
+    FROM [dbo].[協尋檢視表] AS [協尋檢視表]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="會員檢視表" EntityType="Self.會員檢視表" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [會員檢視表].[會員編號] AS [會員編號], 
+    [會員檢視表].[會員帳號] AS [會員帳號], 
+    [會員檢視表].[會員暱稱] AS [會員暱稱], 
+    [會員檢視表].[會員信箱] AS [會員信箱], 
+    [會員檢視表].[收到通知] AS [收到通知], 
+    [會員檢視表].[市] AS [市], 
+    [會員檢視表].[區] AS [區]
+    FROM [dbo].[會員檢視表] AS [會員檢視表]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="認養檢視表" EntityType="Self.認養檢視表" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [認養檢視表].[認養編號] AS [認養編號], 
+    [認養檢視表].[認養單號] AS [認養單號], 
+    [認養檢視表].[認養標題] AS [認養標題], 
+    [認養檢視表].[寵物編號] AS [寵物編號], 
+    [認養檢視表].[認養狀態] AS [認養狀態], 
+    [認養檢視表].[會員編號] AS [會員編號], 
+    [認養檢視表].[會員暱稱] AS [會員暱稱], 
+    [認養檢視表].[會員電話] AS [會員電話], 
+    [認養檢視表].[寵物所在地點_市] AS [寵物所在地點_市], 
+    [認養檢視表].[寵物所在地點_區] AS [寵物所在地點_區], 
+    [認養檢視表].[寵物所在地點_全] AS [寵物所在地點_全], 
+    [認養檢視表].[刊登原因] AS [刊登原因], 
+    [認養檢視表].[備註] AS [備註], 
+    [認養檢視表].[結束時間] AS [結束時間], 
+    [認養檢視表].[是否結案] AS [是否結案], 
+    [認養檢視表].[建立時間] AS [建立時間], 
+    [認養檢視表].[更新時間] AS [更新時間], 
+    [認養檢視表].[Expr1] AS [Expr1], 
+    [認養檢視表].[動物別編號] AS [動物別編號], 
+    [認養檢視表].[品種編號] AS [品種編號], 
+    [認養檢視表].[晶片號碼] AS [晶片號碼], 
+    [認養檢視表].[寵物稱呼] AS [寵物稱呼], 
+    [認養檢視表].[寵物年紀] AS [寵物年紀], 
+    [認養檢視表].[寵物性別] AS [寵物性別], 
+    [認養檢視表].[健康狀況] AS [健康狀況], 
+    [認養檢視表].[寵物資訊備註] AS [寵物資訊備註], 
+    [認養檢視表].[附件一] AS [附件一], 
+    [認養檢視表].[附件二] AS [附件二], 
+    [認養檢視表].[附件三] AS [附件三], 
+    [認養檢視表].[Expr2] AS [Expr2], 
+    [認養檢視表].[Expr3] AS [Expr3], 
+    [認養檢視表].[動物別名稱] AS [動物別名稱], 
+    [認養檢視表].[品種名稱] AS [品種名稱]
+    FROM [dbo].[認養檢視表] AS [認養檢視表]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="MaoUpFindModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="刊登協尋">
+          <Key>
+            <PropertyRef Name="協尋編號" />
+          </Key>
+          <Property Name="協尋編號" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="協尋單號" Type="String" MaxLength="30" Unicode="false" FixedLength="false" />
+          <Property Name="寵物編號" Type="Int32" />
+          <Property Name="協尋狀態" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="會員編號" Type="Int32" />
+          <Property Name="會員暱稱" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="會員電話" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="走失地點_市" Type="Int32" />
+          <Property Name="走失地點_區" Type="Int32" />
+          <Property Name="走失地點_全" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="備註" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="是否結案" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="建立時間" Type="DateTime" Precision="3" />
+          <Property Name="更新時間" Type="DateTime" Precision="3" />
+          <Property Name="協尋標題" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="走失時間" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="刊登認養">
+          <Key>
+            <PropertyRef Name="認養編號" />
+          </Key>
+          <Property Name="認養編號" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="認養單號" Type="String" MaxLength="30" Unicode="false" FixedLength="false" />
+          <Property Name="寵物編號" Type="Int32" />
+          <Property Name="認養狀態" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="會員編號" Type="Int32" />
+          <Property Name="會員暱稱" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="會員電話" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="寵物所在地點_市" Type="Int32" />
+          <Property Name="寵物所在地點_區" Type="Int32" />
+          <Property Name="寵物所在地點_全" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="刊登原因" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="備註" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="結束時間" Type="DateTime" Precision="3" />
+          <Property Name="是否結案" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="建立時間" Type="DateTime" Precision="3" />
+          <Property Name="更新時間" Type="DateTime" Precision="3" />
+          <Property Name="認養標題" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="地區">
+          <Key>
+            <PropertyRef Name="地區編號" />
+          </Key>
+          <Property Name="地區編號" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="城市編號" Type="Int32" />
+          <Property Name="地區名稱" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="備註" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="是否啟用" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="城市">
+          <Key>
+            <PropertyRef Name="城市編號" />
+          </Key>
+          <Property Name="城市編號" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="城市名稱" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="備註" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="是否啟用" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="急迫性">
+          <Key>
+            <PropertyRef Name="急迫性編號" />
+          </Key>
+          <Property Name="急迫性編號" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="急迫性名稱" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="備註" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="是否啟用" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="排序" Type="Int32" />
+        </EntityType>
+        <EntityType Name="按讚資料">
+          <Key>
+            <PropertyRef Name="按讚編號" />
+          </Key>
+          <Property Name="按讚編號" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="留言編號" Type="Int32" />
+          <Property Name="按讚會員編號" Type="Int32" />
+          <Property Name="按讚時間" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="留言板">
+          <Key>
+            <PropertyRef Name="留言編號" />
+          </Key>
+          <Property Name="留言編號" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="來源編號" Type="Int32" />
+          <Property Name="會員編號" Type="Int32" />
+          <Property Name="留言內容" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="留言日期" Type="DateTime" Precision="3" />
+          <Property Name="按讚數" Type="Int32" />
+          <Property Name="是否公開" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="是否被檢舉" Type="Int32" />
+          <Property Name="來源單號" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="動物別">
+          <Key>
+            <PropertyRef Name="動物別編號" />
+          </Key>
+          <Property Name="動物別編號" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="動物別名稱" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="備註" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="是否啟用" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="動物品種">
+          <Key>
+            <PropertyRef Name="品種編號" />
+          </Key>
+          <Property Name="品種編號" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="動物別編號" Type="Int32" Nullable="false" />
+          <Property Name="品種名稱" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="備註" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="是否啟用" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="帳號資料">
+          <Key>
+            <PropertyRef Name="會員編號" />
+          </Key>
+          <Property Name="會員編號" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="會員種類" Type="Int32" />
+          <Property Name="會員帳號" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="會員密碼" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="帳號開通" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="收到通知" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="違規次數" Type="Int32" />
+          <Property Name="建立時間" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="通報資料">
+          <Key>
+            <PropertyRef Name="通報編號" />
+          </Key>
+          <Property Name="通報編號" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="通報單號" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="會員編號" Type="Int32" />
+          <Property Name="會員暱稱" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="會員電話" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="通報標題" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="狀況概述" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="通報時間" Type="DateTime" Precision="3" />
+          <Property Name="通報地點_市" Type="Int32" />
+          <Property Name="通報地點_區" Type="Int32" />
+          <Property Name="發生地點_全" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="急迫性編號" Type="Int32" />
+          <Property Name="附件一" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="附件二" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="附件三" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="是否結案" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="建立時間" Type="DateTime" Precision="3" />
+          <Property Name="更新時間" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="會員違規紀錄">
+          <Key>
+            <PropertyRef Name="違規紀錄編號" />
+          </Key>
+          <Property Name="違規紀錄編號" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="留言編號" Type="Int32" />
+          <Property Name="違規行為編號" Type="Int32" />
+          <Property Name="違規時間" Type="DateTime" Precision="3" />
+          <Property Name="懲罰結束時間" Type="DateTime" Precision="3" />
+          <Property Name="備註" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="是否成立" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="違規行為">
+          <Key>
+            <PropertyRef Name="違規行為編號" />
+          </Key>
+          <Property Name="違規行為編號" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="違規行為名稱" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="懲罰天數" Type="Int32" />
+          <Property Name="備註" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="是否啟用" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="寵物資料">
+          <Key>
+            <PropertyRef Name="寵物編號" />
+          </Key>
+          <Property Name="寵物編號" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="動物別編號" Type="Int32" />
+          <Property Name="品種編號" Type="Int32" />
+          <Property Name="晶片號碼" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="寵物稱呼" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="寵物年紀" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="寵物性別" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="健康狀況" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="附件一" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="附件二" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="附件三" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="建立時間" Type="DateTime" Precision="3" />
+          <Property Name="更新時間" Type="DateTime" Precision="3" />
+          <Property Name="寵物資訊備註" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="一般會員資料">
+          <Key>
+            <PropertyRef Name="編號" />
+          </Key>
+          <Property Name="編號" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="會員編號" Type="Int32" />
+          <Property Name="會員名字" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="會員暱稱" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="會員電話" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="會員信箱" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="公開聯絡" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="聯絡地區_市" Type="Int32" />
+          <Property Name="聯絡地區_區" Type="Int32" />
+          <Property Name="聯絡時段" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="醫院會員資料">
+          <Key>
+            <PropertyRef Name="編號" />
+          </Key>
+          <Property Name="編號" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="會員編號" Type="Int32" />
+          <Property Name="醫院名字" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="醫院電話" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="醫院信箱" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="聯絡人" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="所在地點_市" Type="Int32" />
+          <Property Name="所在地點_區" Type="Int32" />
+          <Property Name="所在地點_全" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="備註" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="營業時間" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityContainer Name="MaoUpFindEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="刊登協尋" EntityType="Self.刊登協尋" />
+          <EntitySet Name="刊登認養" EntityType="Self.刊登認養" />
+          <EntitySet Name="地區" EntityType="Self.地區" />
+          <EntitySet Name="城市" EntityType="Self.城市" />
+          <EntitySet Name="急迫性" EntityType="Self.急迫性" />
+          <EntitySet Name="按讚資料" EntityType="Self.按讚資料" />
+          <EntitySet Name="留言板" EntityType="Self.留言板" />
+          <EntitySet Name="動物別" EntityType="Self.動物別" />
+          <EntitySet Name="動物品種" EntityType="Self.動物品種" />
+          <EntitySet Name="帳號資料" EntityType="Self.帳號資料" />
+          <EntitySet Name="通報資料" EntityType="Self.通報資料" />
+          <EntitySet Name="會員違規紀錄" EntityType="Self.會員違規紀錄" />
+          <EntitySet Name="違規行為" EntityType="Self.違規行為" />
+          <EntitySet Name="寵物資料" EntityType="Self.寵物資料" />
+          <EntitySet Name="一般會員資料" EntityType="Self.一般會員資料" />
+          <EntitySet Name="醫院會員資料" EntityType="Self.醫院會員資料" />
+          <EntitySet Name="會員檢視表" EntityType="MaoUpFindModel.會員檢視表" />
+          <EntitySet Name="協尋檢視表" EntityType="MaoUpFindModel.協尋檢視表" />
+          <EntitySet Name="認養檢視表" EntityType="MaoUpFindModel.認養檢視表" />
+          <FunctionImport Name="usp_GetMessageBoardContent" ReturnType="Collection(MaoUpFindModel.usp_GetMessageBoardContent_Result)">
+            <Parameter Name="來源編號" Mode="In" Type="Int32" />
+            <Parameter Name="來源單號" Mode="In" Type="String" />
+            <Parameter Name="按讚會員編號" Mode="In" Type="Int32" />
+          </FunctionImport>
+        </EntityContainer>
+        <EntityType Name="會員檢視表">
+          <Key>
+            <PropertyRef Name="會員編號" />
+          </Key>
+          <Property Name="會員編號" Type="Int32" Nullable="false" />
+          <Property Name="會員帳號" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="會員暱稱" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="會員信箱" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="收到通知" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="市" Type="Int32" />
+          <Property Name="區" Type="Int32" />
+        </EntityType>
+        <EntityType Name="協尋檢視表">
+          <Key>
+            <PropertyRef Name="協尋編號" />
+          </Key>
+          <Property Name="協尋編號" Type="Int32" Nullable="false" />
+          <Property Name="協尋單號" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="協尋標題" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="寵物編號" Type="Int32" />
+          <Property Name="協尋狀態" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="會員編號" Type="Int32" />
+          <Property Name="會員暱稱" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="會員電話" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="走失地點_市" Type="Int32" />
+          <Property Name="走失地點_區" Type="Int32" />
+          <Property Name="走失地點_全" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="走失時間" Type="DateTime" Precision="3" />
+          <Property Name="備註" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="是否結案" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="建立時間" Type="DateTime" Precision="3" />
+          <Property Name="更新時間" Type="DateTime" Precision="3" />
+          <Property Name="Expr1" Type="Int32" />
+          <Property Name="動物別編號" Type="Int32" />
+          <Property Name="品種編號" Type="Int32" />
+          <Property Name="晶片號碼" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="寵物稱呼" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="寵物年紀" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="寵物性別" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="健康狀況" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="寵物資訊備註" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="附件一" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="附件二" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="附件三" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Expr2" Type="DateTime" Precision="3" />
+          <Property Name="Expr3" Type="DateTime" Precision="3" />
+          <Property Name="動物別名稱" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="品種名稱" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="認養檢視表">
+          <Key>
+            <PropertyRef Name="認養編號" />
+          </Key>
+          <Property Name="認養編號" Type="Int32" Nullable="false" />
+          <Property Name="認養單號" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="認養標題" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="寵物編號" Type="Int32" />
+          <Property Name="認養狀態" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="會員編號" Type="Int32" />
+          <Property Name="會員暱稱" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="會員電話" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="寵物所在地點_市" Type="Int32" />
+          <Property Name="寵物所在地點_區" Type="Int32" />
+          <Property Name="寵物所在地點_全" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="刊登原因" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="備註" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="結束時間" Type="DateTime" Precision="3" />
+          <Property Name="是否結案" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="建立時間" Type="DateTime" Precision="3" />
+          <Property Name="更新時間" Type="DateTime" Precision="3" />
+          <Property Name="Expr1" Type="Int32" />
+          <Property Name="動物別編號" Type="Int32" />
+          <Property Name="品種編號" Type="Int32" />
+          <Property Name="晶片號碼" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="寵物稱呼" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="寵物年紀" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="寵物性別" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="健康狀況" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="寵物資訊備註" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="附件一" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="附件二" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="附件三" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Expr2" Type="DateTime" Precision="3" />
+          <Property Name="Expr3" Type="DateTime" Precision="3" />
+          <Property Name="動物別名稱" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="品種名稱" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <ComplexType Name="usp_GetMessageBoardContent_Result">
+          <Property Type="Int32" Name="留言編號" Nullable="false" />
+          <Property Type="Int32" Name="來源編號" Nullable="true" />
+          <Property Type="String" Name="來源單號" Nullable="true" MaxLength="30" />
+          <Property Type="Int32" Name="會員編號" Nullable="true" />
+          <Property Type="String" Name="留言內容" Nullable="true" MaxLength="500" />
+          <Property Type="DateTime" Name="留言日期" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="按讚數" Nullable="true" />
+          <Property Type="String" Name="是否公開" Nullable="true" MaxLength="1" />
+          <Property Type="Int32" Name="是否被檢舉" Nullable="true" />
+          <Property Type="String" Name="會員帳號" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="會員暱稱" Nullable="true" MaxLength="30" />
+          <Property Type="Int32" Name="是否按讚" Nullable="false" />
+          <Property Type="Int32" Name="按讚編號" Nullable="false" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="MaoUpFindModelStoreContainer" CdmEntityContainer="MaoUpFindEntities">
+          <EntitySetMapping Name="刊登協尋">
+            <EntityTypeMapping TypeName="MaoUpFindModel.刊登協尋">
+              <MappingFragment StoreEntitySet="刊登協尋">
+                <ScalarProperty Name="走失時間" ColumnName="走失時間" />
+                <ScalarProperty Name="協尋標題" ColumnName="協尋標題" />
+                <ScalarProperty Name="協尋編號" ColumnName="協尋編號" />
+                <ScalarProperty Name="協尋單號" ColumnName="協尋單號" />
+                <ScalarProperty Name="寵物編號" ColumnName="寵物編號" />
+                <ScalarProperty Name="協尋狀態" ColumnName="協尋狀態" />
+                <ScalarProperty Name="會員編號" ColumnName="會員編號" />
+                <ScalarProperty Name="會員暱稱" ColumnName="會員暱稱" />
+                <ScalarProperty Name="會員電話" ColumnName="會員電話" />
+                <ScalarProperty Name="走失地點_市" ColumnName="走失地點_市" />
+                <ScalarProperty Name="走失地點_區" ColumnName="走失地點_區" />
+                <ScalarProperty Name="走失地點_全" ColumnName="走失地點_全" />
+                <ScalarProperty Name="備註" ColumnName="備註" />
+                <ScalarProperty Name="是否結案" ColumnName="是否結案" />
+                <ScalarProperty Name="建立時間" ColumnName="建立時間" />
+                <ScalarProperty Name="更新時間" ColumnName="更新時間" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="刊登認養">
+            <EntityTypeMapping TypeName="MaoUpFindModel.刊登認養">
+              <MappingFragment StoreEntitySet="刊登認養">
+                <ScalarProperty Name="認養標題" ColumnName="認養標題" />
+                <ScalarProperty Name="認養編號" ColumnName="認養編號" />
+                <ScalarProperty Name="認養單號" ColumnName="認養單號" />
+                <ScalarProperty Name="寵物編號" ColumnName="寵物編號" />
+                <ScalarProperty Name="認養狀態" ColumnName="認養狀態" />
+                <ScalarProperty Name="會員編號" ColumnName="會員編號" />
+                <ScalarProperty Name="會員暱稱" ColumnName="會員暱稱" />
+                <ScalarProperty Name="會員電話" ColumnName="會員電話" />
+                <ScalarProperty Name="寵物所在地點_市" ColumnName="寵物所在地點_市" />
+                <ScalarProperty Name="寵物所在地點_區" ColumnName="寵物所在地點_區" />
+                <ScalarProperty Name="寵物所在地點_全" ColumnName="寵物所在地點_全" />
+                <ScalarProperty Name="刊登原因" ColumnName="刊登原因" />
+                <ScalarProperty Name="備註" ColumnName="備註" />
+                <ScalarProperty Name="結束時間" ColumnName="結束時間" />
+                <ScalarProperty Name="是否結案" ColumnName="是否結案" />
+                <ScalarProperty Name="建立時間" ColumnName="建立時間" />
+                <ScalarProperty Name="更新時間" ColumnName="更新時間" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="地區">
+            <EntityTypeMapping TypeName="MaoUpFindModel.地區">
+              <MappingFragment StoreEntitySet="地區">
+                <ScalarProperty Name="地區編號" ColumnName="地區編號" />
+                <ScalarProperty Name="城市編號" ColumnName="城市編號" />
+                <ScalarProperty Name="地區名稱" ColumnName="地區名稱" />
+                <ScalarProperty Name="備註" ColumnName="備註" />
+                <ScalarProperty Name="是否啟用" ColumnName="是否啟用" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="城市">
+            <EntityTypeMapping TypeName="MaoUpFindModel.城市">
+              <MappingFragment StoreEntitySet="城市">
+                <ScalarProperty Name="城市編號" ColumnName="城市編號" />
+                <ScalarProperty Name="城市名稱" ColumnName="城市名稱" />
+                <ScalarProperty Name="備註" ColumnName="備註" />
+                <ScalarProperty Name="是否啟用" ColumnName="是否啟用" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="急迫性">
+            <EntityTypeMapping TypeName="MaoUpFindModel.急迫性">
+              <MappingFragment StoreEntitySet="急迫性">
+                <ScalarProperty Name="急迫性編號" ColumnName="急迫性編號" />
+                <ScalarProperty Name="急迫性名稱" ColumnName="急迫性名稱" />
+                <ScalarProperty Name="備註" ColumnName="備註" />
+                <ScalarProperty Name="是否啟用" ColumnName="是否啟用" />
+                <ScalarProperty Name="排序" ColumnName="排序" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="按讚資料">
+            <EntityTypeMapping TypeName="MaoUpFindModel.按讚資料">
+              <MappingFragment StoreEntitySet="按讚資料">
+                <ScalarProperty Name="按讚編號" ColumnName="按讚編號" />
+                <ScalarProperty Name="留言編號" ColumnName="留言編號" />
+                <ScalarProperty Name="按讚會員編號" ColumnName="按讚會員編號" />
+                <ScalarProperty Name="按讚時間" ColumnName="按讚時間" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="留言板">
+            <EntityTypeMapping TypeName="MaoUpFindModel.留言板">
+              <MappingFragment StoreEntitySet="留言板">
+                <ScalarProperty Name="來源單號" ColumnName="來源單號" />
+                <ScalarProperty Name="留言編號" ColumnName="留言編號" />
+                <ScalarProperty Name="來源編號" ColumnName="來源編號" />
+                <ScalarProperty Name="會員編號" ColumnName="會員編號" />
+                <ScalarProperty Name="留言內容" ColumnName="留言內容" />
+                <ScalarProperty Name="留言日期" ColumnName="留言日期" />
+                <ScalarProperty Name="按讚數" ColumnName="按讚數" />
+                <ScalarProperty Name="是否公開" ColumnName="是否公開" />
+                <ScalarProperty Name="是否被檢舉" ColumnName="是否被檢舉" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="動物別">
+            <EntityTypeMapping TypeName="MaoUpFindModel.動物別">
+              <MappingFragment StoreEntitySet="動物別">
+                <ScalarProperty Name="動物別編號" ColumnName="動物別編號" />
+                <ScalarProperty Name="動物別名稱" ColumnName="動物別名稱" />
+                <ScalarProperty Name="備註" ColumnName="備註" />
+                <ScalarProperty Name="是否啟用" ColumnName="是否啟用" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="動物品種">
+            <EntityTypeMapping TypeName="MaoUpFindModel.動物品種">
+              <MappingFragment StoreEntitySet="動物品種">
+                <ScalarProperty Name="品種編號" ColumnName="品種編號" />
+                <ScalarProperty Name="動物別編號" ColumnName="動物別編號" />
+                <ScalarProperty Name="品種名稱" ColumnName="品種名稱" />
+                <ScalarProperty Name="備註" ColumnName="備註" />
+                <ScalarProperty Name="是否啟用" ColumnName="是否啟用" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="帳號資料">
+            <EntityTypeMapping TypeName="MaoUpFindModel.帳號資料">
+              <MappingFragment StoreEntitySet="帳號資料">
+                <ScalarProperty Name="會員編號" ColumnName="會員編號" />
+                <ScalarProperty Name="會員種類" ColumnName="會員種類" />
+                <ScalarProperty Name="會員帳號" ColumnName="會員帳號" />
+                <ScalarProperty Name="會員密碼" ColumnName="會員密碼" />
+                <ScalarProperty Name="帳號開通" ColumnName="帳號開通" />
+                <ScalarProperty Name="收到通知" ColumnName="收到通知" />
+                <ScalarProperty Name="違規次數" ColumnName="違規次數" />
+                <ScalarProperty Name="建立時間" ColumnName="建立時間" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="通報資料">
+            <EntityTypeMapping TypeName="MaoUpFindModel.通報資料">
+              <MappingFragment StoreEntitySet="通報資料">
+                <ScalarProperty Name="通報編號" ColumnName="通報編號" />
+                <ScalarProperty Name="通報單號" ColumnName="通報單號" />
+                <ScalarProperty Name="會員編號" ColumnName="會員編號" />
+                <ScalarProperty Name="會員暱稱" ColumnName="會員暱稱" />
+                <ScalarProperty Name="會員電話" ColumnName="會員電話" />
+                <ScalarProperty Name="通報標題" ColumnName="通報標題" />
+                <ScalarProperty Name="狀況概述" ColumnName="狀況概述" />
+                <ScalarProperty Name="通報時間" ColumnName="通報時間" />
+                <ScalarProperty Name="通報地點_市" ColumnName="通報地點_市" />
+                <ScalarProperty Name="通報地點_區" ColumnName="通報地點_區" />
+                <ScalarProperty Name="發生地點_全" ColumnName="發生地點_全" />
+                <ScalarProperty Name="急迫性編號" ColumnName="急迫性編號" />
+                <ScalarProperty Name="附件一" ColumnName="附件一" />
+                <ScalarProperty Name="附件二" ColumnName="附件二" />
+                <ScalarProperty Name="附件三" ColumnName="附件三" />
+                <ScalarProperty Name="是否結案" ColumnName="是否結案" />
+                <ScalarProperty Name="建立時間" ColumnName="建立時間" />
+                <ScalarProperty Name="更新時間" ColumnName="更新時間" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="會員違規紀錄">
+            <EntityTypeMapping TypeName="MaoUpFindModel.會員違規紀錄">
+              <MappingFragment StoreEntitySet="會員違規紀錄">
+                <ScalarProperty Name="違規紀錄編號" ColumnName="違規紀錄編號" />
+                <ScalarProperty Name="留言編號" ColumnName="留言編號" />
+                <ScalarProperty Name="違規行為編號" ColumnName="違規行為編號" />
+                <ScalarProperty Name="違規時間" ColumnName="違規時間" />
+                <ScalarProperty Name="懲罰結束時間" ColumnName="懲罰結束時間" />
+                <ScalarProperty Name="備註" ColumnName="備註" />
+                <ScalarProperty Name="是否成立" ColumnName="是否成立" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="違規行為">
+            <EntityTypeMapping TypeName="MaoUpFindModel.違規行為">
+              <MappingFragment StoreEntitySet="違規行為">
+                <ScalarProperty Name="違規行為編號" ColumnName="違規行為編號" />
+                <ScalarProperty Name="違規行為名稱" ColumnName="違規行為名稱" />
+                <ScalarProperty Name="懲罰天數" ColumnName="懲罰天數" />
+                <ScalarProperty Name="備註" ColumnName="備註" />
+                <ScalarProperty Name="是否啟用" ColumnName="是否啟用" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="寵物資料">
+            <EntityTypeMapping TypeName="MaoUpFindModel.寵物資料">
+              <MappingFragment StoreEntitySet="寵物資料">
+                <ScalarProperty Name="寵物資訊備註" ColumnName="寵物資訊備註" />
+                <ScalarProperty Name="寵物編號" ColumnName="寵物編號" />
+                <ScalarProperty Name="動物別編號" ColumnName="動物別編號" />
+                <ScalarProperty Name="品種編號" ColumnName="品種編號" />
+                <ScalarProperty Name="晶片號碼" ColumnName="晶片號碼" />
+                <ScalarProperty Name="寵物稱呼" ColumnName="寵物稱呼" />
+                <ScalarProperty Name="寵物年紀" ColumnName="寵物年紀" />
+                <ScalarProperty Name="寵物性別" ColumnName="寵物性別" />
+                <ScalarProperty Name="健康狀況" ColumnName="健康狀況" />
+                <ScalarProperty Name="附件一" ColumnName="附件一" />
+                <ScalarProperty Name="附件二" ColumnName="附件二" />
+                <ScalarProperty Name="附件三" ColumnName="附件三" />
+                <ScalarProperty Name="建立時間" ColumnName="建立時間" />
+                <ScalarProperty Name="更新時間" ColumnName="更新時間" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="一般會員資料">
+            <EntityTypeMapping TypeName="MaoUpFindModel.一般會員資料">
+              <MappingFragment StoreEntitySet="一般會員資料">
+                <ScalarProperty Name="編號" ColumnName="編號" />
+                <ScalarProperty Name="會員編號" ColumnName="會員編號" />
+                <ScalarProperty Name="會員名字" ColumnName="會員名字" />
+                <ScalarProperty Name="會員暱稱" ColumnName="會員暱稱" />
+                <ScalarProperty Name="會員電話" ColumnName="會員電話" />
+                <ScalarProperty Name="會員信箱" ColumnName="會員信箱" />
+                <ScalarProperty Name="公開聯絡" ColumnName="公開聯絡" />
+                <ScalarProperty Name="聯絡地區_市" ColumnName="聯絡地區_市" />
+                <ScalarProperty Name="聯絡地區_區" ColumnName="聯絡地區_區" />
+                <ScalarProperty Name="聯絡時段" ColumnName="聯絡時段" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="醫院會員資料">
+            <EntityTypeMapping TypeName="MaoUpFindModel.醫院會員資料">
+              <MappingFragment StoreEntitySet="醫院會員資料">
+                <ScalarProperty Name="編號" ColumnName="編號" />
+                <ScalarProperty Name="會員編號" ColumnName="會員編號" />
+                <ScalarProperty Name="醫院名字" ColumnName="醫院名字" />
+                <ScalarProperty Name="醫院電話" ColumnName="醫院電話" />
+                <ScalarProperty Name="醫院信箱" ColumnName="醫院信箱" />
+                <ScalarProperty Name="聯絡人" ColumnName="聯絡人" />
+                <ScalarProperty Name="所在地點_市" ColumnName="所在地點_市" />
+                <ScalarProperty Name="所在地點_區" ColumnName="所在地點_區" />
+                <ScalarProperty Name="所在地點_全" ColumnName="所在地點_全" />
+                <ScalarProperty Name="備註" ColumnName="備註" />
+                <ScalarProperty Name="營業時間" ColumnName="營業時間" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="會員檢視表">
+            <EntityTypeMapping TypeName="MaoUpFindModel.會員檢視表">
+              <MappingFragment StoreEntitySet="會員檢視表">
+                <ScalarProperty Name="區" ColumnName="區" />
+                <ScalarProperty Name="市" ColumnName="市" />
+                <ScalarProperty Name="收到通知" ColumnName="收到通知" />
+                <ScalarProperty Name="會員信箱" ColumnName="會員信箱" />
+                <ScalarProperty Name="會員暱稱" ColumnName="會員暱稱" />
+                <ScalarProperty Name="會員帳號" ColumnName="會員帳號" />
+                <ScalarProperty Name="會員編號" ColumnName="會員編號" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="協尋檢視表">
+            <EntityTypeMapping TypeName="MaoUpFindModel.協尋檢視表">
+              <MappingFragment StoreEntitySet="協尋檢視表">
+                <ScalarProperty Name="品種名稱" ColumnName="品種名稱" />
+                <ScalarProperty Name="動物別名稱" ColumnName="動物別名稱" />
+                <ScalarProperty Name="Expr3" ColumnName="Expr3" />
+                <ScalarProperty Name="Expr2" ColumnName="Expr2" />
+                <ScalarProperty Name="附件三" ColumnName="附件三" />
+                <ScalarProperty Name="附件二" ColumnName="附件二" />
+                <ScalarProperty Name="附件一" ColumnName="附件一" />
+                <ScalarProperty Name="寵物資訊備註" ColumnName="寵物資訊備註" />
+                <ScalarProperty Name="健康狀況" ColumnName="健康狀況" />
+                <ScalarProperty Name="寵物性別" ColumnName="寵物性別" />
+                <ScalarProperty Name="寵物年紀" ColumnName="寵物年紀" />
+                <ScalarProperty Name="寵物稱呼" ColumnName="寵物稱呼" />
+                <ScalarProperty Name="晶片號碼" ColumnName="晶片號碼" />
+                <ScalarProperty Name="品種編號" ColumnName="品種編號" />
+                <ScalarProperty Name="動物別編號" ColumnName="動物別編號" />
+                <ScalarProperty Name="Expr1" ColumnName="Expr1" />
+                <ScalarProperty Name="更新時間" ColumnName="更新時間" />
+                <ScalarProperty Name="建立時間" ColumnName="建立時間" />
+                <ScalarProperty Name="是否結案" ColumnName="是否結案" />
+                <ScalarProperty Name="備註" ColumnName="備註" />
+                <ScalarProperty Name="走失時間" ColumnName="走失時間" />
+                <ScalarProperty Name="走失地點_全" ColumnName="走失地點_全" />
+                <ScalarProperty Name="走失地點_區" ColumnName="走失地點_區" />
+                <ScalarProperty Name="走失地點_市" ColumnName="走失地點_市" />
+                <ScalarProperty Name="會員電話" ColumnName="會員電話" />
+                <ScalarProperty Name="會員暱稱" ColumnName="會員暱稱" />
+                <ScalarProperty Name="會員編號" ColumnName="會員編號" />
+                <ScalarProperty Name="協尋狀態" ColumnName="協尋狀態" />
+                <ScalarProperty Name="寵物編號" ColumnName="寵物編號" />
+                <ScalarProperty Name="協尋標題" ColumnName="協尋標題" />
+                <ScalarProperty Name="協尋單號" ColumnName="協尋單號" />
+                <ScalarProperty Name="協尋編號" ColumnName="協尋編號" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="認養檢視表">
+            <EntityTypeMapping TypeName="MaoUpFindModel.認養檢視表">
+              <MappingFragment StoreEntitySet="認養檢視表">
+                <ScalarProperty Name="品種名稱" ColumnName="品種名稱" />
+                <ScalarProperty Name="動物別名稱" ColumnName="動物別名稱" />
+                <ScalarProperty Name="Expr3" ColumnName="Expr3" />
+                <ScalarProperty Name="Expr2" ColumnName="Expr2" />
+                <ScalarProperty Name="附件三" ColumnName="附件三" />
+                <ScalarProperty Name="附件二" ColumnName="附件二" />
+                <ScalarProperty Name="附件一" ColumnName="附件一" />
+                <ScalarProperty Name="寵物資訊備註" ColumnName="寵物資訊備註" />
+                <ScalarProperty Name="健康狀況" ColumnName="健康狀況" />
+                <ScalarProperty Name="寵物性別" ColumnName="寵物性別" />
+                <ScalarProperty Name="寵物年紀" ColumnName="寵物年紀" />
+                <ScalarProperty Name="寵物稱呼" ColumnName="寵物稱呼" />
+                <ScalarProperty Name="晶片號碼" ColumnName="晶片號碼" />
+                <ScalarProperty Name="品種編號" ColumnName="品種編號" />
+                <ScalarProperty Name="動物別編號" ColumnName="動物別編號" />
+                <ScalarProperty Name="Expr1" ColumnName="Expr1" />
+                <ScalarProperty Name="更新時間" ColumnName="更新時間" />
+                <ScalarProperty Name="建立時間" ColumnName="建立時間" />
+                <ScalarProperty Name="是否結案" ColumnName="是否結案" />
+                <ScalarProperty Name="結束時間" ColumnName="結束時間" />
+                <ScalarProperty Name="備註" ColumnName="備註" />
+                <ScalarProperty Name="刊登原因" ColumnName="刊登原因" />
+                <ScalarProperty Name="寵物所在地點_全" ColumnName="寵物所在地點_全" />
+                <ScalarProperty Name="寵物所在地點_區" ColumnName="寵物所在地點_區" />
+                <ScalarProperty Name="寵物所在地點_市" ColumnName="寵物所在地點_市" />
+                <ScalarProperty Name="會員電話" ColumnName="會員電話" />
+                <ScalarProperty Name="會員暱稱" ColumnName="會員暱稱" />
+                <ScalarProperty Name="會員編號" ColumnName="會員編號" />
+                <ScalarProperty Name="認養狀態" ColumnName="認養狀態" />
+                <ScalarProperty Name="寵物編號" ColumnName="寵物編號" />
+                <ScalarProperty Name="認養標題" ColumnName="認養標題" />
+                <ScalarProperty Name="認養單號" ColumnName="認養單號" />
+                <ScalarProperty Name="認養編號" ColumnName="認養編號" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="usp_GetMessageBoardContent" FunctionName="MaoUpFindModel.Store.usp_GetMessageBoardContent">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MaoUpFindModel.usp_GetMessageBoardContent_Result">
+                <ScalarProperty Name="留言編號" ColumnName="留言編號" />
+                <ScalarProperty Name="來源編號" ColumnName="來源編號" />
+                <ScalarProperty Name="來源單號" ColumnName="來源單號" />
+                <ScalarProperty Name="會員編號" ColumnName="會員編號" />
+                <ScalarProperty Name="留言內容" ColumnName="留言內容" />
+                <ScalarProperty Name="留言日期" ColumnName="留言日期" />
+                <ScalarProperty Name="按讚數" ColumnName="按讚數" />
+                <ScalarProperty Name="是否公開" ColumnName="是否公開" />
+                <ScalarProperty Name="是否被檢舉" ColumnName="是否被檢舉" />
+                <ScalarProperty Name="會員帳號" ColumnName="會員帳號" />
+                <ScalarProperty Name="會員暱稱" ColumnName="會員暱稱" />
+                <ScalarProperty Name="是否按讚" ColumnName="是否按讚" />
+                <ScalarProperty Name="按讚編號" ColumnName="按讚編號" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="無" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

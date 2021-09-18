@@ -1,0 +1,30 @@
+.table-hidden tbody {
+	overflow-y: auto;
+	/*設定卷軸 auto 是有超過我的高度的時候才會出現卷軸*/
+	height: 380px;
+	/*自己設定*/
+	display: block;
+}
+
+.table-hidden tr {
+	width: 100%;
+	display: inline-table;
+}
+
+  /*因為 display: block 打壞了 tbody 的結構，
+	所以 thead 的 tr 跟 tbody 的 td 寬度拆開了，
+	所以必須重新設定表格的寬度，
+	但是 tbody 有包括卷軸 針對bootstrap 去修正卷軸
+  */
+  .table-hidden thead th[data-th="備註"]{ width:560px;}
+  /*因為 tbody 多了卷軸 尺寸多了 17px*/
+  .table-hidden tbody td[data-th="備註"]{ width:540px;}
+  
+  /*只要最後面尺寸不一樣!!其他的尺寸一樣就好*/
+  .table-hidden td[data-th="#"],
+  .table-hidden th[data-th="#"]{ width:50px;}
+  .table-hidden td[data-th="電話"],
+  .table-hidden th[data-th="電話"]{ width:200px;}
+  .table-hidden td[data-th="時段"],
+  .table-hidden th[data-th="時段"]{ width:230px;}
+  /*剩下一個欄位不設定讓表格自行決定*/

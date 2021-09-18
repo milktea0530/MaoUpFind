@@ -1,0 +1,48 @@
+@import url(https://fonts.googleapis.com/earlyaccess/notosanstc.css);
+
+
+/*@font-face {
+	font-family: "Noto Sans TC";
+	src: url("https://fonts.googleapis.com/earlyaccess/notosanstc.css");
+}*/
+
+* {
+	font-family: 'Noto Sans TC', '標楷體', '微軟正黑體';
+}
+
+/*html,*/
+body {
+	height: 100%;
+
+	/*網站主要背景色*/
+	background-color: #FFF8ED;
+
+	/* 手機顯示時，控制其最小寬度，避免寬度太小造成跑版嚴重 */
+	/* min-width: 400px; */
+}
+
+.adoption_background {
+	background: #edf1ff;
+}
+/*#ffeded*/
+.bulletin_background {
+	background: #ffeded;
+}
+
+.finding_background {
+	background: #edf9ff;
+}
+
+.container {
+	max-width: 1600px;
+}
+
+
+a {
+	text-decoration: none;
+}
+
+
+.min-h-100pct {
+	min-height: 100%;
+}

@@ -1,0 +1,16 @@
+﻿@model MaoUpFind.Models.通報資料
+
+<body class="bulletin_background">
+    <div class="container">
+        <div class="jumbotron">
+            @*<h3 class="display-4">成功建立通報!</h3>*@
+            <p class="lead">成功建立通報!</p>
+            <hr class="my-4">
+            <p>通報單號: @Model.通報單號</p>
+            <p>通報標題: @Model.通報標題</p>
+            <p class="lead">
+                <a class="btn btn-primary btn-lg" href="~/Bulletin03/detailView?number=@Model.通報單號" role="button">前往查詢專欄</a>
+            </p>
+        </div>
+    </div>
+</body>

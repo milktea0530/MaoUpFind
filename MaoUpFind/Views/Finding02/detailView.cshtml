@@ -1,0 +1,146 @@
+﻿@model MaoUpFind.ViewModels.VM_Finding02_DetailView
+@{
+    var userData = ViewBag.UserData;
+    ViewBag.title = "協尋專欄";
+}
+<title>查詢專欄-詳細資料</title>
+<link href="~/Content/Adoption02_b.css" rel="stylesheet" />
+
+<!-- 這裡面放各頁面主要內容 -->
+<body class="finding_background">
+    <div class="container min-h-100pct mt-3">
+
+        <!--麵包屑-->
+        <div>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#">首頁</a></li>
+                    <li class="breadcrumb-item"><a href="#">寵物協尋</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">協尋專欄</li>
+                </ol>
+            </nav>
+        </div>
+
+        <div class="row justify-content-around">
+            <!-- 左邊 -->
+            <div class="info col col-xl-7 p-4">
+                <!-- 圖片區 -->
+                <div class="row justify-content-around">
+                    <div class="col-md-8">
+                        <img src="~/FileUpload/@Model.附件一" class="card-img" alt="...">
+                    </div>
+                    <div class="col col-md-4">
+                        <img src="~/FileUpload/@Model.附件二" alt="">
+                        <img src="~/FileUpload/@Model.附件三" alt="">
+                    </div>
+                </div>
+                <!-- 內容 -->
+                <h3 class="m-3">@Model.協尋標題</h3>
+                <p style="border: rgb(206, 137, 10) 1px solid; width: 70%; margin: 16px;"></p>
+                <p><img src="~/Images/svg/geo-alt.svg" alt="" width="32" class="mx-2"> @Model.走失地點_全</p>
+                <p><img src="~/Images/svg/calendar3.svg" alt="" width="32" class="mx-2">走失時間  @Model.走失時間</p>
+                <div class="d-flex mb-3">
+                    <div class="mx-2">
+                        <img src="~/Images/svg/card-text.svg" alt="" width="32">
+                    </div>
+                    <div>@Model.備註</div>
+                </div>
+                <h5 class="m-3">寵物資訊</h5>
+                <p style="border: rgb(206, 137, 10) 1px solid; width: 30%; margin: 16px;"></p>
+                <p>
+                    <img src="~/Images/svg/pawprint.svg" alt="" width="32" class="mx-2">
+                    @Model.寵物稱呼 : @Model.動物別名稱 / @Model.品種名稱 / @Model.寵物年紀 / @Model.寵物性別
+                </p>
+                <div class="d-flex">
+                    <div class="mx-2">
+                        <img src="~/Images/svg/medical-history.svg" alt="" width="32">
+                    </div>
+                    <div>@Model.健康狀況</div>
+                </div>
+                <div class="d-flex mt-3">
+                    <div class="mx-2">
+                        <img src="~/Images/svg/card-text.svg" alt="" width="32">
+                    </div>
+                    <div>@Model.寵物資訊備註</div>
+                </div>
+            </div>
+
+            <!-- 右邊 留言板 -->
+            <div class="col-xl-5 p-4">
+                <div class="board bg-light border" style="height: 600px;">
+                    <div class="d-flex justify-content-center mb-4 ">
+                        <h2>留言</h2>
+                    </div>
+                    <div class="board-body overflow-auto ps-3">
+                        <div class="" id="testBoardBody">
+                            @Html.Action("MessageBoard", new { id = Model.協尋編號, number = Model.協尋單號, bId = Model.會員編號 })
+                        </div>
+                        @* 資料 *@
+                    </div>
+                    <form id="testForm">
+                        <input type="hidden" value="@Model.協尋編號" name="來源編號" />
+                        <input type="hidden" value="@Model.協尋單號" name="來源單號" />
+                        <input type="hidden" value="@userData.會員編號" name="會員編號" id="userID" />  @*留言的人*@
+                        <div class="board-foot d-flex align-items-center">
+                            @*<div class="">*@
+                            <div class="col-12 d-flex p-2">
+                                <div class="col-2">
+                                    @Html.DropDownList("是否公開", GetddItemData.是否公開(), new { @class = "form-select", Width = "25px" })
+                                </div>
+                                <div class="col-2">
+                                    @* 是否不能修改 *@
+                                    <input type="text" id="userName" name="userName" class="form-control" placeholder="稱呼" value="@userData.會員暱稱">
+                                </div>
+                                <div class="col-8">
+                                    <input type="text" id="formContent" name="留言內容" class="form-control" placeholder="輸入內容">
+                                </div>
+                            </div>
+                            @*</div>*@
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+
+<script>
+    ; (function () {
+        setScrollTop();
+    })()
+    function setScrollTop() {
+        var height = $("div #testBoardBody").height();
+        $("div .board-body").scrollTop(height);
+    }
+    var i_content = document.getElementById("formContent");
+    i_content.addEventListener("keyup", function (event) {
+        if (event.keyCode === 13) {
+            var cont = $("#formContent").val();
+            var id = $("#userID").val();
+            if (id == 0) {
+                alert("請登入會員!")
+                return false;
+            }
+            if (cont != "") {
+                event.preventDefault();
+                $.ajax({
+                    url: "@Url.Action("MessageBoard", "Finding02")",
+                    type: 'POST',
+                    data: $("#testForm").serialize(),
+                    async: false,
+                    success: function (data) {
+                        // 清空元素內的資料並填入新的資料
+                        $('div #testBoardBody').empty().html(data);
+                        // 清空內容欄位
+                        $("#formContent").val("");
+                        // 更新高度
+                        setScrollTop()
+                    }
+                })
+            } else {
+                alert("請輸入內容!");
+            }
+        }
+    })
+</script>

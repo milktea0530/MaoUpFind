@@ -1,0 +1,194 @@
+﻿
+@{ ViewBag.Title = "Adoption02_b"; }
+
+<head>
+    <title>寵物媒合-詳細資料</title>
+
+    <link rel="stylesheet" href="~/Content/Adoption02_b.css">
+</head>
+
+<body>
+    <!-- 這裡面放各頁面主要內容 -->
+    <div class="container min-h-100pct mt-3">
+
+        <!--麵包屑-->
+        <div>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li>
+                        @Html.ActionLink("首頁", "Index", "Home", null, new { @class = "breadcrumb-item" })
+                    </li> &nbsp;/&nbsp;
+                    <li>
+                        @Html.ActionLink("寵物媒合", "Adoption02_a", "Adoption02", null, new { @class = "breadcrumb-item" })
+                    </li> &nbsp;/&nbsp;
+                    <li>
+                        @Html.ActionLink("詳細資料", "Adoption02_b", "Adoption02", null, new { @class = "breadcrumb-item active" })
+                    </li>
+
+                </ol>
+            </nav>
+        </div>
+
+
+
+        <div class="row justify-content-around ms-5">
+
+            <!-- 左邊 -->
+            <div class="info col col-xl-6 p-4">
+
+                <!-- 圖片區 -->
+                <div class="row justify-content-around">
+                    <div class="col-md-8">
+                        <img src="https://images.pexels.com/photos/247502/pexels-photo-247502.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+                             class="card-img" alt="...">
+                    </div>
+
+                    <div class="col col-md-4">
+                        <img src="https://images.pexels.com/photos/572861/pexels-photo-572861.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+                             alt="">
+                        <img src="https://images.pexels.com/photos/688885/pexels-photo-688885.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+                             alt="">
+                    </div>
+                </div>
+
+            </div>
+
+
+
+            <!-- 右邊 細節 -->
+            <div class="col-xl-6 p-2">
+                <div class="p-3">
+                    <h4 class="">親人虎斑貓找家</h4>
+                    <div class="line"></div>
+                    <div class="row mt-4">
+                        <div class="col-md-2" style="letter-spacing:4px"><strong>認養狀態</strong></div>
+                        <div class="col-md-8 justify-content-start">未認養</div>
+                    </div>
+                    <div class="row mt-4">
+                        <div class="col-md-2" style="letter-spacing:4px"><strong>刊登時間</strong></div>
+                        <div class="col-md-8 justify-content-start">2021/06/30 17:03:20</div>
+                    </div>
+                    <div class="row mt-4">
+                        <div class="col-md-2" style="letter-spacing:4px"><strong>地點</strong></div>
+                        <div class="col-md-8 justify-content-start">台南市東區育樂街</div>
+                    </div>
+                    <div class="row mt-4">
+                        <div class="col-md-2" style="letter-spacing:4px"><strong>送養原因</strong></div>
+                        <div class="col-md-8 justify-content-start">Lorem ipsum, dolor sit amet consectetur adipisicing elit.</div>
+                    </div>
+                    <div class="row mt-4">
+                        <div class="col-md-2" style="letter-spacing:4px"><strong>備註</strong></div>
+                        <div class="col-md-8 justify-content-start">Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti, ipsa! Consequatur aperiam molestiae nobis ipsum explicabo, soluta harum esse voluptates.</div>
+                    </div>
+
+                    <div class="line mt-4"></div>
+                    <div class="row mt-4">
+                        <div class="col-md-2" style="letter-spacing:4px"><strong>晶片號碼</strong></div>
+                        <div class="col-md-8 justify-content-start">3967206851097</div>
+                    </div>
+                    <div class="row mt-4">
+                        <div class="col-md-2" style="letter-spacing:4px"><strong>動物別</strong></div>
+                        <div class="col-md-8 justify-content-start">貓</div>
+                    </div>
+                    <div class="row mt-4">
+                        <div class="col-md-2" style="letter-spacing:4px"><strong>品種</strong></div>
+                        <div class="col-md-8 justify-content-start">米克斯</div>
+                    </div>
+                    <div class="row mt-4">
+                        <div class="col-md-2" style="letter-spacing:4px"><strong>年紀</strong></div>
+                        <div class="col-md-8 justify-content-start">3歲</div>
+                    </div>
+                    <div class="row mt-4">
+                        <div class="col-md-2" style="letter-spacing:4px"><strong>性別</strong></div>
+                        <div class="col-md-8 justify-content-start">公</div>
+                    </div>
+                    <div class="row mt-4">
+                        <div class="col-md-2" style="letter-spacing:4px"><strong>健康狀況</strong></div>
+                        <div class="col-md-8 justify-content-start">Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti, ipsa! Consequatur aperiam molestiae nobis ipsum explicabo, soluta harum esse voluptates.</div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- 下面 留言板 -->
+        <div class="col-xl-9 p-4 mx-auto">
+            <div class="board bg-light border p-3">
+                <div class="d-flex justify-content-center mb-4">
+                    <h4 class="message">留言</h4>
+                </div>
+
+                <div class="board-body">
+
+                    <!--  -->
+                    <div class="d-flex justify-content-between flex-wrap msg-head py-1">
+                        <div class="d-flex align-items-center px-2">
+                            <h5>Will</h5>
+                        </div>
+                        <div class="px-2">
+                            發布時間: 2021/06/30 03:22:30
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-start msg-body p-1 mb-3">
+                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit.</p>
+                    </div>
+
+                    <!--  -->
+                    <div class="d-flex justify-content-between flex-wrap msg-head py-1">
+                        <div class="d-flex align-items-center px-2">
+                            <h5>Mary</h5>
+                        </div>
+                        <div class="px-2">
+                            發布時間: 2021/06/30 03:22:30
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-start msg-body p-1 mb-3">
+                        <p>
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero, eaque id optio libero
+                            totam quisquam similique voluptas quod officia velit cupiditate eius a quos
+                            necessitatibus.
+                        </p>
+                    </div>
+
+                    <!--  -->
+                    <div class="d-flex justify-content-between flex-wrap msg-head py-1">
+                        <div class="d-flex align-items-center px-2">
+                            <h5>Peter</h5>
+                        </div>
+                        <div class="px-2">
+                            發布時間: 2021/06/30 03:22:30
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-start msg-body p-1 mb-3">
+                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit.</p>
+                    </div>
+
+
+                </div>
+
+
+
+                <div class="board-foot">
+                    <form action="">
+                        <div class="row align-items-center justify-content-evenly">
+                            <div class="col-sm-2 offset-md-1">
+                                <input type="text" id="" class="form-control text-center" placeholder="稱謂">
+                            </div>
+                            <div class="col-sm-7">
+                                <input type="text" id="" class="form-control" placeholder="輸入內容">
+                            </div>
+                            <div class="col-sm-2">
+                                <button class="btn btn-outline-secondary" type="button">送 出</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+

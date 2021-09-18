@@ -1,0 +1,152 @@
+﻿@model IEnumerable<MaoUpFind.ViewModels.VM_Adoption02_DetailView>
+@{
+    ViewBag.Title = "認養地圖";
+}
+
+<head>
+    <title>地圖-認養地圖</title>
+    <script src="~/Scripts/markerclustererplus/index.min.js"></script>
+</head>
+
+<!-- 這裡面放內容 -->
+<div class="container min-h-100pct">
+
+    <!--麵包屑-->
+    <div>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li>
+                    @Html.ActionLink("首頁", "Index", "Home", null, new { @class = "breadcrumb-item" })
+                </li> &nbsp;/&nbsp;
+                <li class="breadcrumb-item active" aria-current="page">認養地圖</li>
+
+            </ol>
+        </nav>
+    </div>
+
+    <!--地圖-->
+    <section class="py-5">
+        <div class="container">
+            <div class="row mb-4">
+                <div class="col-md-12">
+                    <div id="googleMap" style="width: 100%; height: 630px;" class="mt-0"></div>
+                    <script type="text/javascript">
+                            function sleep(ms = 0) {
+								return new Promise(r => setTimeout(r, ms));
+							}
+                            function initMap() {
+                                var lat, lng;
+                                //取得定位,並當成地圖中心
+                                navigator.geolocation.getCurrentPosition((position) => {
+                                    
+                                    console.log(position.coords);
+                                    lat = position.coords.latitude;
+                                    lng = position.coords.longitude;
+                                    //初始化地圖
+                                    map = new google.maps.Map(document.getElementById('googleMap'), {
+                                        zoom: 15,
+                                        mapId: '38b4ae3dda7def8',
+                                        center: {
+                                            lat: lat,
+                                            lng: lng
+                                        }
+                                    });
+                                    var markers = [ ];
+                                    var infoWindows = [ ];
+                                    var location = [ ];
+                                    var geocoder = new google.maps.Geocoder();
+                                    var marker_config = [];
+                                    var info_config = [];
+                                @{
+                                    foreach (var item in Model)
+                                {
+                                    @:info_config.push('<h1>@item.認養標題</h1>' + '<h6>刊登時間 : @item.建立時間</h6>' + '<hr><h4>名字 : @item.寵物稱呼</h4>' + '<img src="../FileUpload/@item.附件一" style="width:250px; height:auto;"><br>'+ '<a href="../Adoption02/detailView?number=@item.認養單號">前往寵物媒合</a>');
+
+                                    @:marker_config.push({ address: '@item.寵物所在地點_全' });
+                                }
+                                }
+                                    //geocoder主程式
+                                    function _geocoder(address, callback) {
+                                        geocoder.geocode({
+                                            address: address
+                                        },
+                                            function (results, status) {
+                                                console.log('results: ', address, results, status)
+                                                if (status == google.maps.GeocoderStatus.OK) {
+                                                    location = results[0].geometry.location;
+                                                    callback(location);
+                       item                            //用一個 callback 就不用每次多寫上面這段
+                                                }
+                                            });
+                                    }
+                                    //使用地址或名稱標出位置
+                                    _geocoder('台南火車站', async function (address) {
+                                        var map = new google.maps.Map(document.getElementById('googleMap'), {
+                                            mapId: '38b4ae3dda7def8',
+                                            center: address,
+                                            zoom: 15,
+                                            map: map
+                                        });
+                                        new google.maps.Marker({
+                                            icon: {
+                                            url: '../Images/svg/會員.svg',
+                                            scaledSize: new google.maps.Size(35, 35),
+                                        },
+                                            position: {
+                                                lat: lat,
+                                                lng: lng
+                                            },
+                                            animation: google.maps.Animation.DROP,
+                                            map: map
+                                        });
+                                        //設定資訊視窗內容
+                                        info_config.forEach(function (e, i) {
+                                            infoWindows[i] = new google.maps.InfoWindow({
+                                                content: e
+                                            });
+                                        });
+
+                                        //標出 marker
+										for(let i=0; i<marker_config.length; i++) {
+                                            //marker_config.forEach(function (e, i) {
+                                            e = marker_config[i];
+                                            _geocoder(e.address, function (address) {
+                                                marker = {
+                                                    position: address, // 按照地址定位
+                                                    icon: {
+                                                        url: '../Images/svg/NewAdoption.svg', // 使用icon
+                                                    scaledSize: new google.maps.Size(35, 35),
+                                                    },
+                                                    map: map
+                                                }
+                                                markers[i] = new google.maps.Marker(marker);
+                                                markers[i].setMap(map);
+                                                //點擊資訊視窗
+                                                markers[i].addListener('click', function () {
+                                                    infoWindows[i].open(map, markers[i]);
+                                                });
+                                                //聚合定位標註
+                                                markers[i].addListener('mouseout', function () {
+                                                    new MarkerClusterer(map, markers, {
+                                                        imagePath: "../Scripts/markerclustererplus/images/m"
+                                                    }); ;
+                                                });
+                                            });
+											//await sleep(850);
+                                            if (i % 10 == 0) {
+                                                await sleep(9800);
+                                            }
+                                        //});
+										}
+                                    });
+                                });
+                            }
+                    </script>
+                    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAFlFMvVNn1WkNVJti6J1fE6fo8sTKY360&callback=initMap">
+                    </script>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+

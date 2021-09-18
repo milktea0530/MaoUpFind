@@ -1,0 +1,80 @@
+﻿
+@{
+    ViewBag.Title = "about";
+}
+
+
+
+<head>
+    <title>關於我們</title>
+
+    <style>
+        .wrap {
+            width: 60%;
+            margin: 0 auto;
+            margin-top: 30px;
+            margin-bottom: 30px;
+        }
+
+            .wrap h2 {
+                margin-bottom: 20px;
+            }
+
+        span {
+            color: darkred;
+        }
+
+        .wrap li {
+            margin-top: 10px;
+            margin-bottom: 10px;
+            /* padding-left: -2rem; */
+        }
+
+        .wrap li {
+            margin-left: -2rem;
+        }
+
+        .wrap img {
+            width: 100%;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 頁首 -->
+    <header id="header"></header>
+
+    <!-- 這個div裡面放各頁面主要內容 -->
+    <div class="container min-h-100pct">
+
+        <!-- 這是範例，請改成要做的頁面的內容 -->
+        <div class="wrap">
+            <h2>關於我們</h2>
+            <p style="text-align:left; ">
+                大家好，我們是「毛起來找」寵物通報、認養與協尋平台的創辦者，同時也是一群喜歡毛孩們的朋友，取名的用意既是把失蹤的毛孩找回來，同時也希望幫助還沒有家的浪浪們找到溫暖的家
+            </p>
+            <p style="text-align:left; ">領養代替購買的概念已在台灣推行多年，近期也可以發現有越來越多人願意認養流浪動物，但經過我們觀察也發現了這些現象:</p>
+            <ul>
+                <li><span>🐈認養的刊登較為發散:</span> 動物醫院通常只會在自己的網站上傳資訊，而一般民眾多數會將資訊上傳到個人網站或寵物社群，造成刊登資訊的觸擊率低。</li>
+                <li><span>🐈動物救援的即時性:</span> 民眾在路邊發現流浪動物時，可能因個人原因或資訊不足而錯過救援的時機。</li>
+                <li><span>🐈毛孩走失成為浪浪:</span> 在毛孩失蹤時，無法及時讓周邊的人共同留意，造成尋回的困難。</li>
+            </ul>
+            <p style="text-align:left;">
+                因應上述所提的不便，也促使毛起來找平台的誕生，主要目的為:透過平台提供資訊整合以及增加救援與尋找效率。
+            </p>
+            <h2>網站功能</h2>
+            <ul>
+                <li><span>🐈通報、認養、協尋的刊登與查詢:</span> 使用者透過平台將資訊發佈。</li>
+                <li><span>🐈推播功能:</span> 使用者可以透過信箱接收所在地區的刊登資訊。</li>
+                <li><span>🐈留言版貼文串:</span> 在刊登的詳細資料內設有留言板，提供使用者之間的互動與交流。</li>
+                <li><span>🐈地圖資訊整合:</span>能定位與查詢刊登位置及詳細資訊，並查看附近動物醫院。</li>
+            </ul>
+            <h2>註冊會員之流程與功能</h2>
+            <img src="~/Images/會員與功能.png" alt="">
+            <h2>情境流程</h2>
+            <img src="~/Images/情境與流程.png" alt="">
+        </div>
+    </div>
+
+</body>

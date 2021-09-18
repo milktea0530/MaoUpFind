@@ -1,0 +1,37 @@
+﻿
+@{
+    MaoUpFind.ViewModels.VM_Adoption02_Query qm = ViewBag.QueryModel;
+}
+<div class="text-center mt-3 mb-5">
+    <h1 class="mb-3">查詢可認養動物</h1>
+    @using (Html.BeginForm("Index", "Adoption02", FormMethod.Post, new { onsubmit = "return submitHandler()" }))
+    {
+        <div class="row align-items-center justify-content-center">
+            <!--  -->
+            <div class="col-8 col-xl-5 my-3">
+                <div class="row align-items-center justify-content-center">
+                    <div class="col-12 col-md-5 my-1">
+                        @Html.EditorFor(model => qm.startDate, new { htmlAttributes = new { @class = "form-control", type = "date", id = "startDate", Name = "startDate" } })
+                    </div>
+                    <div class="col-12 col-md-1 my-0">
+                        <span>至</span>
+                    </div>
+                    <div class="col-12 col-md-5 my-3">
+                        @Html.EditorFor(model => qm.endDate, new { htmlAttributes = new { @class = "form-control", type = "date", id = "endDate", Name = "endDate" } })
+                    </div>
+                </div>
+            </div>
+            <!--  -->
+            <div class="col-8 col-xl-3">
+                <div class="row align-items-center justify-content-center">
+                    <div class="col-12 col-md-8 col-xl-auto">
+                        @Html.DropDownListFor(model => qm.sortType, GetddItemData.取得排序(qm.sortType, 1), new { @class = "form-select", width = "100%", id = "sortType", Name = "sortType" })
+                    </div>
+                    <div class="col-12 col-xl-auto my-3">
+                        <button type="submit" class="btn btn-primary bg-secondary border-0">查詢</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>

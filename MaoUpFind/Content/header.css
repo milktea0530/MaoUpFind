@@ -1,0 +1,117 @@
+.nav-h {
+    /*控制導覽列的高度*/
+    min-height: 90px;
+    padding: 0;
+    /* min-width: 400px; */
+}
+
+@media screen and (max-width: 1200px) {
+    nav ul li * {
+        font-size: 1rem !important;
+    }
+}
+
+.myNavBg-0 {
+    background-color: rgba(255, 255, 255, 0.7);
+    transition: background 0.4s linear;
+}
+
+.myNavBg-1 {
+    background-color: rgba(255, 255, 255, 1) !important;
+    transition: background 0.2s linear;
+}
+
+
+.navbar * {
+    white-space: nowrap;
+    vertical-align: middle;
+}
+
+.nav-item img {
+    width: 28px;
+}
+
+/**/
+
+a.nav-link:hover {
+    border-radius: 7%;
+    -webkit-border-radius: 7%;
+    -moz-border-radius: 7%;
+    background-color: #eff2e1;
+    box-shadow: inset 0px 0px 100px -10px #EBEBEB;
+    transition: box-shadow 0.2s linear,background 0.2s linear;
+}
+
+
+/* 後面加換行 */
+.br::after {
+    content: '\A';
+    white-space: pre;
+}
+
+@media screen and (max-width: 992px) {
+    .nav-item img {
+        display: none;
+    }
+
+    .nav-item .br::after {
+        display: none;
+    }
+}
+
+.navbar-brand span {
+    font-size: 30px;
+    font-weight: 500;
+    color: #515151;
+    margin: auto 6px;
+}
+
+.navbar-light .navbar-nav .nav-link,
+.navbar-light .navbar-nav .show>.nav-link {
+    font-size: 20px;
+    color: #515151;
+}
+
+.dropdown-toggle::after {
+    content: none;
+}
+
+
+
+
+
+/*  */
+/*  */
+
+.container-marquee {
+    height: 48px;
+    background-color: #000000;
+    opacity: 0.7;
+}
+
+.marquee {
+    width: auto;
+
+    /* 	配合li高度 */
+    height: 48px;
+    white-space: nowrap;
+    overflow: hidden;
+
+}
+
+.marquee * {
+    list-style-type: none;
+    font-size: 1.25rem;
+    color: #FFF8ED;
+    margin: auto;
+}
+
+.marquee ul {
+    padding-left: 0;
+}
+
+.marquee ul li {
+    /*每個li高度 */
+    height: 48px;
+    padding-top: 10px;
+}
